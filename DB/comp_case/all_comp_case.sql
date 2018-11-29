@@ -1,0 +1,1 @@
+SELECT * FROM comp_case LIMIT 50 OFFSET 50;
