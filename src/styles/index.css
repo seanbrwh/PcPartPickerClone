@@ -864,21 +864,22 @@ table  tr:nth-child(even){
 .case-page{
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: space-evenly
 }
 .case-col-left{
   width: 35%;
-  height: 100%;
+  height: 2800px;
   background: rgb(237, 237, 237);
+  padding-top: 5%;
 }
 .case-col-right{
   width: 65%;
   height: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 .case-filter{
-  width: 50%;
-  border: 1px solid grey;
+  width: 50%;  
   display: flex;  
   flex-direction: column;
   align-items: flex-start;

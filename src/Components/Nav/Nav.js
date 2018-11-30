@@ -134,7 +134,9 @@ class Nav extends Component{
                         <h3>Power Supply</h3>
                       </div>
                       <div className='nav-img case-nav'>
-                        <img src={nav_case} alt=""/>
+                        <Link to='comp-case'>
+                          <img src={nav_case} alt=""/>  
+                        </Link>
                         <h3>Case</h3>
                       </div>
                     </div>

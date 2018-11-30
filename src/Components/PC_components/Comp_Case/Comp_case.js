@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import Slider from '@material-ui/lab/Slider'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types';
+import CompCaseTable from './Comp_case_table'
 
 const styles = {
   root: {
@@ -29,16 +29,7 @@ class Comp_case extends Component {
   handleChange = (event, value) => {
     this.setState({ value })
   }
-  componentDidMount(){
-    axios.get('/api/comp-case').then(res=>{
-      this.setState({comp_case:res.data})
-    })
-    this.rand()
-  }
-  rand(){
-    let randNum = Math.random() * (999-20) + 20;
-    this.setState({rand: Math.floor(randNum).toFixed(2)})
-  }
+  
   render() {
     const {value, min, max} = this.state;
     const {classes} = this.props;
@@ -220,36 +211,7 @@ class Comp_case extends Component {
             </div>
           </div>
           <div className="case-col-right">
-            <table>
-              <tbody>
-                <tr>
-                  <th>&nbsp;</th>
-                  <th>Case</th>
-                  <th>Type</th>
-                  <th>Ext. 5&frac14;</th>
-                  <th>Int. 3&frac12;</th>
-                  <th>Power Supply</th>
-                  <th>Rating</th>
-                  <th>Price</th>
-                  <th>&nbsp;</th>
-                </tr>
-                {this.state.comp_case.map(e=>{
-                  return (
-                  <tr>
-                    <td><input type='checkbox'/></td>
-                    <td>{e.case_name}</td>
-                    <td>{e.case_type}</td>
-                    <td></td>
-                    <td>{e.int3p5bays}</td>
-                    <td>{e.includespowersupply}</td>
-                    <td></td>
-                    <td>{this.state.rand}</td>
-                    <td></td>
-                  </tr>
-                  )
-                })}
-              </tbody>
-            </table>
+            <CompCaseTable/>
           </div>
         </div>    
       </div>

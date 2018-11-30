@@ -1,5 +1,6 @@
 import React from 'react'
 import Pcpp from './pcpp.png'
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
@@ -14,9 +15,15 @@ export default function Footer() {
           <div className="sections">
             <h3>Sections</h3>
             <ul>
-              <li>System Builds</li>
-              <li>Build Guides</li>
-              <li>Completed Builds</li>
+              <Link to='/list'>
+                <li>System Builds</li>
+              </Link>
+              <Link to='/guide'>
+                <li>Build Guides</li>
+              </Link>
+              <Link to='/build'>
+                <li>Completed Builds</li>
+              </Link>
               <li>Individual Parts</li>
             </ul>
           </div>
@@ -44,12 +51,24 @@ export default function Footer() {
           <div className="sections">
             <h3>Elsewhere</h3>
             <ul>
-              <li>Discord</li>
-              <li>Facebook</li>
-              <li>Instagram</li>
-              <li>Twitch</li>
-              <li>Twitter</li>
-              <li>YouTube</li>
+              <a href="https://discordapp.com/invite/pcpartpicker">
+                <li>Discord</li>
+              </a>   
+              <a href="https://www.facebook.com/pcpartpicker">
+                <li>Facebook</li>
+              </a>
+              <a href="https://www.instagram.com/pcpartpicker/">
+                <li>Instagram</li>
+              </a>
+              <a href="https://www.twitch.tv/pcpartpicker">
+                <li>Twitch</li>
+              </a>
+              <a href="https://twitter.com/pcpartpicker">
+                <li>Twitter</li>
+              </a>
+              <a href="https://www.youtube.com/user/pcpartpicker">
+                <li>YouTube</li>
+              </a>           
             </ul>
           </div>
         </div>
