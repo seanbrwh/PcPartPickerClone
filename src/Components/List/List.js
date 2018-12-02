@@ -31,7 +31,7 @@ export default class List extends Component {
         </div>
         <div className="check-build-guides">
           <div className='call-to-action'>
-            <p>Not Sure Where to start? check out our <span>build Guides!</span> </p>
+            <p>Not Sure Where to start? check out our <span><a href='/#/guide'>build Guides!</a></span> </p>
           </div>
         </div>
         <div className='component-table'>
@@ -48,7 +48,13 @@ export default class List extends Component {
             </tr>            
             <tr>
               <td>CPU</td>
-              <td><button>Choose a CPU</button></td>
+              <td>
+                <Link to='/cpu'>
+                  <button>
+                    Choose a CPU
+                  </button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -58,7 +64,13 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>CPU Cooler</td>
-              <td><button>Choose a CPU Cooler</button></td>
+              <td>
+                <Link to='/cpu-cooler'>
+                  <button>
+                    Choose a CPU Cooler
+                  </button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -68,7 +80,13 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Motherboard</td>
-              <td><button>Choose a Motherboard</button></td>
+              <td>
+                <Link to='motherboard'>
+                  <button>
+                    Choose a Motherboard
+                  </button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -78,7 +96,13 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Memory</td>
-              <td><button>Choose Memory </button></td>
+              <td>
+                <Link to='/memory'>
+                  <button>
+                    Choose Memory 
+                  </button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -88,7 +112,13 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Storage</td>
-              <td><button>Choose Storage </button></td>
+              <td>
+                <Link to='/internal-storage'>
+                  <button>
+                    Choose Storage 
+                  </button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -98,7 +128,13 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Video Card</td>
-              <td><button>Choose a Video Card</button></td>
+              <td>
+                <Link to='/video-card'>
+                  <button>
+                    Choose a Video Card
+                  </button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -122,7 +158,11 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Power Supply</td>
-              <td><button>Choose a Power Supply</button></td>
+              <td>
+                <Link to='power-supply'>
+                  <button>Choose a Power Supply</button>              
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -132,7 +172,11 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Optical Drive</td>
-              <td><button>Choose An Optical Drive </button></td>
+              <td>
+                <Link to='optical'>
+                  <button>Choose An Optical Drive </button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -142,7 +186,11 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Operating System</td>
-              <td><button>Choose a Operating System </button></td>
+              <td>
+                <Link to='os'>
+                  <button>Choose a Operating System </button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -152,7 +200,11 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Software</td>
-              <td><button>Choose Software</button></td>
+              <td>
+                <Link to='software'>
+                  <button>Choose Software</button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -162,7 +214,11 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Monitor</td>
-              <td><button>Choose a Monitor</button></td>
+              <td>
+                <Link to='monitor'>
+                  <button>Choose a Monitor</button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -172,7 +228,11 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>External Storage</td>
-              <td><button>Choose External Storage </button></td>
+              <td>
+                <Link to='external-storage'>
+                  <button>Choose External Storage </button>
+                </Link>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -190,9 +250,15 @@ export default class List extends Component {
               </td>
               ) : 
               <td className='three-btn'>
+              <Link to='sound-card'>
                 <button>Choose a Sound Card</button>
+              </Link>
+              <Link to='wired-network-card'>
                 <button>Choose a Wired Network Adapter</button>
+              </Link>
+              <Link to='wireless-network-card'>
                 <button>Choose a Wireless Network Adapter</button>
+              </Link>
               </td>
             }
             <td></td>
@@ -206,10 +272,18 @@ export default class List extends Component {
               <td>Peripherals</td>
               {per === false ? (<td><button onClick={()=>this.handlePer()}>Add Peripherals</button> <br/>
               Headphones, Keyboards, Mice, Speakers</td>) : (<td className='three-btn'>
-                <button>Choose Headphones</button>
-                <button>Choose a Keyboard</button>
-                <button>Choose a Mouse</button>
-                <button>Choose Computer Speakers</button>
+                <Link to='headphones'>
+                  <button>Choose Headphones</button>
+                </Link>
+                <Link to='keyboard'>
+                  <button>Choose a Keyboard</button>
+                </Link>
+                <Link to='mouse'>
+                  <button>Choose a Mouse</button>
+                </Link>
+                <Link to='speakers'>
+                  <button>Choose Computer Speakers</button>
+                </Link>
               </td>)}
               <td></td>
               <td></td>
@@ -222,10 +296,18 @@ export default class List extends Component {
               <td>Accessories / Other	</td>
               {accesories === false ? (<td><button onClick={()=>this.handleAcc()}>Add Accessories / Other...</button><br/>              	
               Case Fans, Fan Controllers, Thermal Compound, UPS Systems</td>) : (<td className='three-btn'>
-                <button>Choose a Case Fan</button>
-                <button>Choose a Fan Countroller</button>
-                <button>Choose Thermal Compound</button>
-                <button>Choose a UPS</button>
+                <Link to='case-fan'>
+                  <button>Choose a Case Fan</button>
+                </Link>
+                <Link to='fan-controller'>
+                  <button>Choose a Fan Countroller</button>
+                </Link>
+                <Link to='thermal-compound'>
+                  <button>Choose Thermal Compound</button>
+                </Link>
+                <Link to='ups'>
+                  <button>Choose a UPS</button>
+                </Link>
               </td>) }
               <td></td>
               <td></td>
@@ -236,7 +318,8 @@ export default class List extends Component {
             </tr>
             <tr>
               <td>Custom</td>
-              <td><button>Add Custom Part</button></td>
+              <td>
+                <button>Add Custom Part</button></td>
               <td></td>
               <td></td>
               <td></td>

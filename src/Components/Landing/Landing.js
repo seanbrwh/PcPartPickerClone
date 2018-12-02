@@ -1,13 +1,13 @@
 import React from 'react'
 import '../../styles/index.css'
-import user_1 from './user_build.jpg'
-import user_2 from './user_build2.jpg'
-import user_3 from './user_build3.jpg'
-import user_4 from './user_1.jpg'
-import blog   from './blog.jpg'
-import blog_2 from './blog_1.jpg'
-import blog_3 from './blog_2.jpg'
-import blog_4 from './blog_3.jpg'
+import user_1 from '../../Assets/user_build.jpg'
+import user_2 from '../../Assets/user_build2.jpg'
+import user_3 from '../../Assets/user_build3.jpg'
+import user_4 from '../../Assets/user_1.jpg'
+import blog   from '../../Assets/blog.jpg'
+import blog_2 from '../../Assets/blog_1.jpg'
+import blog_3 from '../../Assets/blog_2.jpg'
+import blog_4 from '../../Assets/blog_3.jpg'
 
 
 export default function Landing() {

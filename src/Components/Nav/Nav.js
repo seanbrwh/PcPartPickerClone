@@ -2,19 +2,19 @@ import React, { Component } from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import Menu from '@material-ui/core/Menu'
 import { withStyles } from '@material-ui/core/styles';
-import guides from './guide.png'
-import builds from './builds.png'
-import wrench from './wrench.png'
-import part from './part.png'
-import search from './search.png'
-import nav_case from './nav-case.png'
-import nav_cpu from './nav-cpu.png'
-import nav_cpu_cooler from './nav-cpucooler.png'
-import nav_mem from './nav-memory.png'
-import nav_mb from './nav-motherboard.png'
-import nav_psu from './nav-powersupply.png'
-import nav_ssd from './nav-ssd.png'
-import nav_vid from './nav-videocard.png'
+import guides from '../../Assets/guide.png'
+import builds from '../../Assets/builds.png'
+import wrench from '../../Assets/wrench.png'
+import part from '../../Assets/part.png'
+import search from '../../Assets/search.png'
+import nav_case from '../../Assets/nav-case.png'
+import nav_cpu from '../../Assets/nav-cpu.png'
+import nav_cpu_cooler from '../../Assets/nav-cpucooler.png'
+import nav_mem from '../../Assets/nav-memory.png'
+import nav_mb from '../../Assets/nav-motherboard.png'
+import nav_psu from '../../Assets/nav-powersupply.png'
+import nav_ssd from '../../Assets/nav-ssd.png'
+import nav_vid from '../../Assets/nav-videocard.png'
 
 
 const StyledMenu = withStyles({
@@ -103,42 +103,56 @@ class Nav extends Component{
                   <div id='land-drawer'>
                     <div className="nav-pic-items">
                     <div className="nav-pic-row-1">
+                    <Link to='cpu' onClick={this.handleClose}>
                       <div className='nav-img cpu-nav'>
                         <img src={nav_cpu} alt=""/>
                         <h3>CPU</h3>
                       </div>
+                    </Link>
+                    <Link to='cpu-cooler' onClick={this.handleClose}>
                       <div className='nav-img cpu-cooler-nav'>
                         <img src={nav_cpu_cooler} alt=""/>
                         <h3>CPU Cooler</h3>
                       </div>
+                    </Link>
+                    <Link to='motherboard' onClick={this.handleClose}>
                       <div className='nav-img motherboad-nav'>
                         <img src={nav_mb} alt=""/>
                         <h3>Motherboard</h3>
                       </div>
+                    </Link>
+                    <Link to='memory' onClick={this.handleClose}>
                       <div className='nav-img memory-nav'>
                         <img src={nav_mem} alt=""/>
                         <h3>Memory</h3>
                       </div>
+                    </Link>
                     </div>
                     <div className="nav-pic-row-2">
+                    <Link to='internal-storage' onClick={this.handleClose}>
                       <div className='nav-img storage-nav'>
                         <img src={nav_ssd} alt=""/>
                         <h3>Storage</h3>
                       </div>
+                    </Link>
+                    <Link to='video-card' onClick={this.handleClose}>
                       <div className='nav-img video-card-nav'>
                         <img src={nav_vid} alt=""/>
                         <h3>Video Card</h3>
                       </div>
+                    </Link>
+                    <Link to='power-supply' onClick={this.handleClose}>
                       <div className='nav-img psu-nav'>
                         <img src={nav_psu} alt=""/>
                         <h3>Power Supply</h3>
                       </div>
-                      <div className='nav-img case-nav'>
-                        <Link to='comp-case'>
-                          <img src={nav_case} alt=""/>  
-                        </Link>
+                    </Link>
+                    <Link to='comp-case' onClick={this.handleClose}>
+                      <div className='nav-img case-nav'>                        
+                          <img src={nav_case} alt=""/>                          
                         <h3>Case</h3>
                       </div>
+                    </Link>
                     </div>
                     </div>
                     <div className="dropdown-nav">

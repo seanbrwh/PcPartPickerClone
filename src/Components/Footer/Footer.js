@@ -1,5 +1,5 @@
 import React from 'react'
-import Pcpp from './pcpp.png'
+import Pcpp from '../../Assets/pcpp.png'
 import { Link } from 'react-router-dom'
 
 export default function Footer() {

@@ -130,28 +130,26 @@ export default class Pagination extends Component {
               if (page === LEFT_PAGE)
                 return (
                   <li key={index}>
-                    <a
-                      href="#"
+                    <button                      
                       aria-label="Previous"
                       onClick={this.handleMoveLeft}
                     >
                       <span aria-hidden="true">&laquo;</span>
                       <span className="sr-only">Previous</span>
-                    </a>
+                    </button>
                   </li>
                 );
 
               if (page === RIGHT_PAGE)
                 return (
                   <li key={index} className="page-item">
-                    <a
-                      href="#"
+                    <button                      
                       aria-label="Next"
                       onClick={this.handleMoveRight}
                     >
                       <span aria-hidden="true">&raquo;</span>
                       <span className="sr-only">Next</span>
-                    </a>
+                    </button>
                   </li>
                 );
 
@@ -162,13 +160,12 @@ export default class Pagination extends Component {
                     currentPage === page ? " active" : ""
                   }`}
                 >
-                  <a
-                    className="page-link"
-                    href="#"
+                  <button
+                    className="page-link"                    
                     onClick={e => this.handleClick(page, e)}
                   >
                     {page}
-                  </a>
+                  </button>
                 </li>
               );
             })}

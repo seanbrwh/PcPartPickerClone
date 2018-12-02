@@ -245,7 +245,7 @@ nav{
   margin: 40px 40px;
   border-radius: 1px;
   box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.4);
-  background-image: url('../../src/Components/Landing/pcpp-circuit.png');
+  background-image: url('../Assets/pcpp-circuit.png');
   background-repeat: no-repeat;
   background-position: bottom right;
   background-size: 150px 181px;
