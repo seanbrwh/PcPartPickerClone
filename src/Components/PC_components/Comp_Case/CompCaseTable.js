@@ -1,18 +1,30 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Pagination from '../Pagination/Pagination';
 
 export default class Compc_caseTable extends Component {
   constructor(){
     super()
     this.state = {
       c_case:[],
-      asc: 'desc'
+      currentCases:[],
+      currentPage:null,
+      totalPages:null,
+      asc: 'desc',
     }
   }
   componentDidMount(){
     axios.get('/api/comp-case').then(res=>{
       this.setState({c_case:res.data})
     })
+  }
+  onPageChanged = data => {
+    const {c_case} = this.state
+    const { currentPage, totalPages, pageLimit} = data
+
+    const offSet = (currentPage - 1) * pageLimit
+    const currentCases = c_case.slice(offSet, offSet + pageLimit)
+    this.setState({currentPage, currentCases, totalPages})
   }
   compareValues(key, order='asc') {
     return function(a, b) {
@@ -38,31 +50,62 @@ export default class Compc_caseTable extends Component {
     };
   }
   sortBy(key, type) {
-    let arrayCopy = [...this.state.c_case];
+    let arrayCopy = [...this.state.currentCases];
     arrayCopy.sort(this.compareValues(key, type));
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
-    this.setState({c_case: arrayCopy});
+    this.setState({currentCases: arrayCopy});
   }
   
   render() {
-    console.log(this.props.manufacturer)
+    console.log(this.state)
+    const {
+      c_case,
+      currentCases,
+      currentPage,
+      totalPages
+    } = this.state;
+
+    const totalCases = c_case.length;
+
+    if (totalCases == 0) return null;
+
     return (
+      
       <div>
-        <div className="header">
-          <div onClick={() => this.sortBy('case_name', this.state.asc)} >case Name {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}</div>
-          <div onClick={() => this.sortBy('int3p5bays')}>int3p5bays</div>          
-        </div>
-        <div className="rows">
-          {
-            this.state.c_case.map(e=>{
-              return (
-              <div key={e.case_id}>
-                <div>{e.case_name}</div>
-                <div>{e.int3p5bays === 'undefined' ? '' : e.int3p5bays}</div>
-              </div>)
-            })
-          }
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th onClick={()=>this.sortBy('case_name', this.state.asc)}>
+                Case {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.currentCases.map(e=>{
+                return (
+                  <tr key={e.case_id}>
+                    {e.case_name}
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+          <tfoot>
+            <td>
+              <h2>Total Cases {totalCases}</h2>
+              <h2>Current Page {currentPage} / {totalPages}</h2>
+            </td>
+            <td>
+              <Pagination
+              totalRecords={totalCases}
+              pageLimit={50}
+              pageNeighbours={1}
+              onPageChanged={this.onPageChanged}
+              />
+            </td>
+          </tfoot>
+        </table>
       </div>
     )
   }

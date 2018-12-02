@@ -885,3 +885,13 @@ table  tr:nth-child(even){
   align-items: flex-start;
   margin-left: 50%;
 }
+
+#pagination{
+  background: white;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column
+}
+#pagination ul{
+  display: flex;
+}
