@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Slider from '@material-ui/lab/Slider'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types';
-import CompCaseTable from './Comp_case_table'
+import CompCaseTable from './CompCaseTable'
 
 const styles = {
   root: {
@@ -23,17 +23,21 @@ class Comp_case extends Component {
       value:0,
       min: 1,
       max: 1930,
-      rand:0
+      rand:0,
+      manufacturer:''
     }
+    this.handleCheck.bind(this)
   }
   handleChange = (event, value) => {
     this.setState({ value })
   }
-  
+  handleCheck = (e) => {
+    this.setState({manufacturer:e.target.value})
+  }
   render() {
     const {value, min, max} = this.state;
     const {classes} = this.props;
-    console.log(this.state.comp_case)
+    console.log(this.state.manufacturer)
     return (
       <div>
         <div className="current-part-list-full">
@@ -76,8 +80,8 @@ class Comp_case extends Component {
               </div>
               <div className='comp-build-filter'>
                 <h3>Manufacturer</h3>
-                <label htmlFor=""><input type="checkbox"/></label>
-                <label htmlFor=""><input type="checkbox"/></label>
+                <label htmlFor=""><input value='Corsair' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/></label>
+                <label htmlFor=""><input value='Thermaltake' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
@@ -211,7 +215,9 @@ class Comp_case extends Component {
             </div>
           </div>
           <div className="case-col-right">
-            <CompCaseTable/>
+            <CompCaseTable
+              manufacturer={this.state.manufacturer}
+            />
           </div>
         </div>    
       </div>
