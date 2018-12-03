@@ -1,21 +1,21 @@
 require('dotenv').config();
 const express = require('express'),
       bodyParser = require('body-parser'),
-      session = require('express-session'),
+      // session = require('express-session'),
       massive = require('massive'),
-      comp_crtl = require('./controllers/Component_controller')
-
-const {SERVER_PORT, CON_STRING} = process.env;
+      comp_crtl = require('./controllers/Component_controller');
 
 const app = express();
+const {SERVER_PORT, CON_STRING} = process.env;
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(session({
-  secret:'12p09s9s9df91',
-  resave:false,
-  saveUninitialized:false
-}))
+// app.use(session({
+//   secret:'12p09s9s9df91',
+//   resave:false,
+//   saveUninitialized:false
+// }))
 app.use( express.static( `${__dirname}/../build` ) )
 
 
