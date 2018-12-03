@@ -16,7 +16,7 @@
 
 
 ##### *Old Version* [link to site](https://www.personalcomputerchunks.com)
-##### *New Version* [link to site](https://www.seanbrwhite.com)
+##### *New Version* [link to site](http://www.personal.seanbwhite.com/#/)
 
 - [x] Routes Started
 - [x] Redux started
