@@ -18,7 +18,7 @@
 ##### *Old Version* [link to site](https://www.personalcomputerchunks.com)
 ##### *New Version* [link to site](https://www.seanbrwhite.com)
 
-- [ ] need to do this
-- [ ] need to do this
-- [ ] need to do this
-- [ ] need to do this
+- [x] Routes Started
+- [x] Redux started
+- [x] Server started
+- [x] DB started
