@@ -1,4 +1,4 @@
-## Rebuilding PcPartPicker with PostgreSQL, Express, React, And Node.
+## **Rebuilding PcPartPicker with PostgreSQL, Express, React, And Node**.
 ### Server
 #### Express server implementation
 #### Body-parser In use for JSON
