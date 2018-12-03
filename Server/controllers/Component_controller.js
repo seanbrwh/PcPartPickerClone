@@ -1,17 +1,17 @@
 module.exports = {
-  get_comp_case: async (req,res) => {
+  getCompCase: async (req,res) => {
     try {
       let db = req.app.get('db');
-      let comp_case = await db.comp_case.all_comp_case();
+      let comp_case = await db.compcase.allcompcase();
       res.status(200).send(comp_case);    
     } catch (error) {
       throw error
     }
   },
-  get_case_fan: async (req,res) => {
+  getCaseFan: async (req,res) => {
     try {
       let db = req.app.get('db');
-      let case_fan = await db.Case_fan.all_case_fan();
+      let case_fan = await db.casefan.allcasefan();
       res.status(200).send(case_fan);
     } catch (error) {
       throw error
@@ -22,10 +22,10 @@ module.exports = {
 
     res.status(200).send()
   },
-  get_cpu: async (req,res) => {
+  getCpu: async (req,res) => {
     try {
       let db = req.app.get('db');
-      let cpu = await db.Cpu.all_cpu();
+      let cpu = await db.cpu.allcpu();
       res.status(200).send(cpu);   
     } catch (error) {
       throw error

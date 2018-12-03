@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express'),
       bodyParser = require('body-parser'),
-      // session = require('express-session'),
+      session = require('express-session'),
       massive = require('massive'),
       comp_crtl = require('./controllers/Component_controller')
 
@@ -11,14 +11,18 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(session({
+  secret:'12p09s9s9df91',
+  resave:false,
+  saveUninitialized:false
+}))
 app.use( express.static( `${__dirname}/../build` ) )
 
 
-
-app.get('/api/comp-case', comp_crtl.get_comp_case)
-app.get('/api/case-fan', comp_crtl.get_case_fan)
+app.get('/api/comp-case', comp_crtl.getCompCase)
+app.get('/api/case-fan', comp_crtl.getCaseFan)
 app.get('/api/speakers', comp_crtl.get_speakers)
-app.get('/api/cpu', comp_crtl.get_cpu)
+app.get('/api/cpu', comp_crtl.getCpu)
 app.get('/api/cpu-cooler', comp_crtl.get_cpu_cooler)
 app.get('/api/external-storage', comp_crtl.get_external_storage)
 app.get('/api/fan-controller', comp_crtl.get_fan_controller)
