@@ -2,8 +2,9 @@ module.exports = {
   getCompCase: async (req,res) => {
     try {
       let db = req.app.get('db');
-      let comp_case = await db.compcase.allcompcase();
-      res.status(200).send(comp_case);    
+      db.compcase.allcompcase().then(response=>{
+        res.status(200).send(response);    
+      }).catch(err=>{if(err)throw err})
     } catch (error) {
       throw error
     }
@@ -11,8 +12,9 @@ module.exports = {
   getCaseFan: async (req,res) => {
     try {
       let db = req.app.get('db');
-      let case_fan = await db.casefan.allcasefan();
-      res.status(200).send(case_fan);
+      db.casefan.allcasefan().then(response=>{
+        res.status(200).send(response);
+      }).catch(err=>{if(err)throw err});
     } catch (error) {
       throw error
     }
@@ -25,8 +27,9 @@ module.exports = {
   getCpu: async (req,res) => {
     try {
       let db = req.app.get('db');
-      let cpu = await db.cpu.allcpu();
-      res.status(200).send(cpu);   
+      db.cpu.allcpu().then(response=>{
+        res.status(200).send(response);   
+      }).catch(err=>{if(err)throw err});
     } catch (error) {
       throw error
     }
