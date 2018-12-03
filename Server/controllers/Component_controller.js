@@ -1,12 +1,12 @@
 module.exports = {
   getCpu: async (req,res) => {      
-      let db = req.app.get('db'); 
-      try {
-        let cpu = await db.cpu.allcpu();
-        res.status(200).send(cpu);        
-        
-      } catch (error) {
-        console.log(error)
-      }     
+      let db = req.app.get('db');     
+      db.cpu.allcpu().then(response=>{
+        res.status(200).send(response);             
+      }).catch(err=>{
+        if(err){
+          console.log(err)
+        }
+      });
   }
 }
