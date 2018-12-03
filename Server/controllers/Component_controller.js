@@ -3,16 +3,16 @@ module.exports = {
     try {
       let db = req.app.get('db');
       let comp_case = await db.comp_case.all_comp_case();
-      res.status(200).send(comp_case)    
+      res.status(200).send(comp_case);    
     } catch (error) {
       throw error
     }
   },
   get_case_fan: async (req,res) => {
     try {
-      let db = req.app.get('db')
+      let db = req.app.get('db');
       let case_fan = await db.Case_fan.all_case_fan();
-      res.status(200).send(case_fan)
+      res.status(200).send(case_fan);
     } catch (error) {
       throw error
     }
@@ -24,9 +24,9 @@ module.exports = {
   },
   get_cpu: async (req,res) => {
     try {
-      let db = req.app.get('db')
-      let cpu = await db.Cpu.all_cpu()
-      res.status(200).send(cpu)      
+      let db = req.app.get('db');
+      let cpu = await db.Cpu.all_cpu();
+      res.status(200).send(cpu);   
     } catch (error) {
       throw error
     }
