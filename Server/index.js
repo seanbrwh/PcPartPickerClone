@@ -44,8 +44,8 @@ app.get('/api/cpu', comp_crtl.getCpu)
 // app.get('/api/wired-network', comp_crtl.get_wired_network)
 // app.get('/api/wireless-network', comp_crtl.get_wireless_network)
 
-massive(CON_STRING).then(db=>{
-  app.set('db',db);
+massive(CON_STRING).then(DB=>{
+  app.set('DB',DB);
   console.log('Connected To Database');
 
   app.listen(SERVER_PORT, ()=>{
