@@ -22,3 +22,4 @@
 - [x] Redux started
 - [x] Server started
 - [x] DB started
+- [ ] Create a task list
