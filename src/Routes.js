@@ -8,7 +8,7 @@ import Comp_case from './Components/PC_components/Comp_Case/Comp_case'
 import Case_Fan from './Components/PC_components/Case_Fan/Case_Fan'
 import Computer_Speakers from './Components/PC_components/Computer_Speakers/Computer_Speakers'
 import Cpu from './Components/PC_components/Cpu/Cpu'
-import Cpu_Cooler from './Components/PC_components/Cpu_Cooler/Cpu_Cooler'
+import CpuCooler from './Components/PC_components/CpuCooler/CpuCooler'
 import External_Storage from './Components/PC_components/External_Storage/External_Storage'
 import Fan_Controller from './Components/PC_components/Fan_Controller/Fan_Controller'
 import Headphones from './Components/PC_components/Headphones/Headphones'
@@ -39,8 +39,8 @@ export default(
     <Route path='/comp-case' component={Comp_case}/>
     <Route path='/case-fan' component={Case_Fan}/>
     <Route path='/speakers' component={Computer_Speakers}/>
-    <Route path='/cpu' component={Cpu}/>
-    <Route path='/cpu-cooler' component={Cpu_Cooler}/>
+    <Route exact path='/cpu' component={Cpu}/>
+    <Route path='/cpu-cooler' component={CpuCooler}/>
     <Route path='/external-storage' component={External_Storage}/>
     <Route path='/fan-controller' component={Fan_Controller}/>
     <Route path='/headphones' component={Headphones}/>

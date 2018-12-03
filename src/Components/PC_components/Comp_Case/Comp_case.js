@@ -18,8 +18,7 @@ const styles = {
 class Comp_case extends Component {
   constructor(){
     super()
-    this.state = {
-      comp_case:[],
+    this.state = {      
       value:0,
       min: 1,
       max: 1930,
