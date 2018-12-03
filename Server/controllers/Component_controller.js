@@ -130,5 +130,5 @@ module.exports = {
     let db = req.app.get('db')
 
     res.status(200).send()
-  },
+  }
 }
