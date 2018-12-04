@@ -6,7 +6,7 @@ const express = require('express'),
       comp_crtl = require('./controllers/Component_controller');
 
 const app = express();
-const {SERVER_PORT, CON_STRING} = process.env;
+const {SERVER_PORT, CON_STRING,DB_PASS} = process.env;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -43,7 +43,15 @@ app.get('/api/cpu-cooler', comp_crtl.getcpucooler)
 // app.get('/api/wired-network', comp_crtl.get_wired_network)
 // app.get('/api/wireless-network', comp_crtl.get_wireless_network)
 
-massive(CON_STRING).then(db=>{
+massive({
+  host:'ec2-54-83-8-246.compute-1.amazonaws.com',
+  port:5432,
+  database:'djnq6mm6e1btm',
+  user:'nreykeglqvgnxv',
+  password:DB_PASS,
+  ssl:true,
+  poolsize:10
+}).then(db=>{
   app.set('db',db);
   console.log('Connected To Database');
 
