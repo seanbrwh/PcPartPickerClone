@@ -450,6 +450,9 @@ nav{
   height: 550px;
   margin: 40px 0; 
 }
+.blog-item p {
+  width: 220px;
+}
 #land-drawer{
   width: 60%;
   margin: 0 auto;
