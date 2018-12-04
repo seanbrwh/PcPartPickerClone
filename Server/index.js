@@ -18,7 +18,15 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use( express.static( `${__dirname}/../build` ) )
 
 
-app.get('/api/cpu', comp_crtl.getCpu)
+app.get('/api/cpu', async (req,res)=>{
+  try {
+    let db = req.app.get('db');             
+    const cpu = await db.cpu.allcpu();
+    res.send(cpu)
+  } catch (error) {
+    console.log(error)
+  }
+})
 app.get('/api/cpu-cooler', comp_crtl.getcpucooler)
 // app.get('/api/comp-case', comp_crtl.getCompCase)
 // app.get('/api/case-fan', comp_crtl.getCaseFan)
