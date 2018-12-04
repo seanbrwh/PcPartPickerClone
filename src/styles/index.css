@@ -1,3 +1,6 @@
+a{
+  color: inherit;
+}
 header{
   z-index: 1
 }
@@ -239,6 +242,9 @@ nav{
   height: 100%;
 }
 #featured-build{
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;  
   width: 520px;
   height: 460px;
   background:#937A5D;
@@ -249,9 +255,38 @@ nav{
   background-repeat: no-repeat;
   background-position: bottom right;
   background-size: 150px 181px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#feat-build-con{
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  flex-direction: column;
+  margin: 20px 15px;
 }
 #featured-build:hover{
   box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.75);
+}
+#featured-build h2{
+  color:rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  font-weight: 600;
+}
+#featured-build h3{
+  color: white;
+  font-size: 26px;
+  font-weight: 700;
+}
+#featured-build img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-right: 10px;  
+}
+#featured-build p{
+  color: rgb(220, 210, 199);
+  font-size: 14px;
 }
 .landing-content{
   display: flex;
@@ -292,18 +327,37 @@ nav{
   background: rgb(238, 169, 1)
 }
 .sample-build-guides{
-  position: relative;
-  bottom: 60px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 .sample-build-guides h1{
   color: white;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 10px;
 }
 .sample-build-guides p{
-  color: rgb(182, 182, 189);
-  margin-bottom: 10px;
+  width: 300px;
+  font-size: 12px;
+  color: rgb(182, 182, 189);  
+  margin: 2px;
+}
+#samp-title-price{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#samp-title-price h1:nth-child(2){
+  color: #a9d0ec;
+}
+#samp-user{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#samp-user i{
+  font-size: 14px;
+  margin: 0 4px;
 }
 .heading{
   height: 100px;
@@ -336,6 +390,7 @@ nav{
   padding: 5px 0;
 }
 .user-build-img-con{
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -363,6 +418,10 @@ nav{
   font-size: 12px;
   margin-top: 5px;
 }
+.name-user h2{
+  font-size: 20px;
+  font-weight: 600;
+}
 .name-user p{
   margin-top: 5px;
 }
@@ -372,32 +431,45 @@ nav{
   align-items: center;
   padding: 20px;
 }
+.user-vote p{
+  color: #2c85c5
+}
 .user-complete-build-landing{
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
-  width: 44%;
+  width: 340px;
   margin-right: 26px;
   margin-top: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.user-complete-build-landing span{
+  color: #2c85c5
 }
 .user-complete-build-landing h2{
-  margin-bottom: 10px;
+  font-weight: 600;
+  margin-bottom: 10px;  
 }
 .user-complete-build-landing img{
   width: 70px;
-  margin-right: 5px;
+  margin-right: 25px;
+  
 }
-.user-single{
+.user-complete-build-landing p{
+  font-size: 12px;
+  padding: 2px ;
+}
+#user-comp-build{
+  width: 210px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
-.user-content{
+.user-single{  
   display: flex;
-  justify-content: flex-start;
   align-items: flex-start;
-  flex-direction: column;
+  font-size: 14px;
 }
 .secondary-content button{
   background: rgb(77, 157, 215);
@@ -446,12 +518,32 @@ nav{
   margin-top: 30px;
 }
 .blog-item{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
   background: rgb(255, 255, 255);
   height: 550px;
   margin: 40px 0; 
 }
-.blog-item p {
-  width: 220px;
+.blog-text{
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 240px;
+}
+.blog-text h2{
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.blog-text h4{
+  color: #8d8f9e;
+  font-size: 12px;
+  margin: 5px 0;
+}
+.blog-text p{
+  font-size: 14px;
 }
 #land-drawer{
   width: 60%;

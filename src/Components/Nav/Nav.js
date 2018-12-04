@@ -53,7 +53,7 @@ class Nav extends Component{
                 <Link to='/list'>
                   <div className='nav-text'>
                     <span>
-                      VIEW YOUR
+                      START A
                     </span>
                     <p>
                       System Build
