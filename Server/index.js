@@ -8,7 +8,6 @@ const express = require('express'),
 const app = express();
 const {SERVER_PORT, CON_STRING} = process.env;
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 // app.use(session({
@@ -19,11 +18,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use( express.static( `${__dirname}/../build` ) )
 
 
+app.get('/api/cpu', comp_crtl.getCpu)
+app.get('/api/cpu-cooler', comp_crtl.getcpucooler)
 // app.get('/api/comp-case', comp_crtl.getCompCase)
 // app.get('/api/case-fan', comp_crtl.getCaseFan)
 // app.get('/api/speakers', comp_crtl.get_speakers)
-app.get('/api/cpu', comp_crtl.getCpu)
-// app.get('/api/cpu-cooler', comp_crtl.get_cpu_cooler)
 // app.get('/api/external-storage', comp_crtl.get_external_storage)
 // app.get('/api/fan-controller', comp_crtl.get_fan_controller)
 // app.get('/api/headphones', comp_crtl.get_headphones)
@@ -44,8 +43,8 @@ app.get('/api/cpu', comp_crtl.getCpu)
 // app.get('/api/wired-network', comp_crtl.get_wired_network)
 // app.get('/api/wireless-network', comp_crtl.get_wireless_network)
 
-massive(CON_STRING).then(DB=>{
-  app.set('DB',DB);
+massive(CON_STRING).then(db=>{
+  app.set('db',db);
   console.log('Connected To Database');
 
   app.listen(SERVER_PORT, ()=>{
