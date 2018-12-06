@@ -11,7 +11,7 @@ import { addSession } from '../../Ducks/Reducer'
 import Modal from 'react-modal'
 import ReCAPTCHA from 'react-google-recaptcha'
 
-const modalStyles = {
+const logModalStyles = {
   content:{
     top                   : '40%',
     left                  : '50%',
@@ -21,6 +21,27 @@ const modalStyles = {
     transform             : 'translate(-50%, -50%)',
     width                 : '350px',
     height                : '550px',
+    background            : 'rgb(247, 247, 247)',
+    borderRadius          : '8px',
+    boxShadow             : '2px 2px 4px 2px rgba(0,0,0,0.34)',
+    border                : '.5px solid rgba(0,0,0,.4)'
+  },
+  overlay:{
+    background:'rgb(90, 93, 116)',
+    width:'100%',
+    height:'100vh',
+  }
+}
+const regModalStyles = {
+  content:{
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    width                 : '500px',
+    height                : '850px',
     background            : 'rgb(247, 247, 247)',
     borderRadius          : '8px',
     boxShadow             : '2px 2px 4px 2px rgba(0,0,0,0.34)',
@@ -71,12 +92,14 @@ class Header extends Component {
       <header className='header'>
       <Modal
         isOpen={this.state.logModal}
-        style={modalStyles}
+        style={logModalStyles}
         onRequestClose={()=>this.closoLogModal()}
       >
-      <div id='login-modal'>
+      <div id='login-modal'>        
         <h1>PCPartPicker - Login</h1>
-        <div id='log-modal-img-con'><img src={smallLogo} alt=""/></div>
+        <div id='log-modal-img-con'>
+          <img src={smallLogo} alt=""/>
+        </div>
         <div id='log-mod-inp'>
           <label htmlFor="">Username</label>
           <input type="text"/>
@@ -85,7 +108,7 @@ class Header extends Component {
         </div>
         <div id='check-log'>
           <input type='checkbox'/>
-          <p>Remeber Me</p>          
+          <p>Remember Me</p>          
         </div>
         <button>Log In</button>
         <p>Want to join? Register here. it's free!</p>
@@ -94,26 +117,33 @@ class Header extends Component {
       </Modal>
       <Modal
         isOpen={this.state.regModal}
-        style={modalStyles}
+        style={regModalStyles}
         onRequestClose={()=>this.closeRegModal()}
       >
-        <div>
+        <div id='reg-modal'>
           <h1>PCPartPicker - Register</h1>
-          <label htmlFor="">Username:</label>
-          <input type="text"/>
-          <label htmlFor="">E-mail:</label>
-          <input type="text"/>
-          <label htmlFor="">E-mail (again):</label>
-          <input type="text"/>
-          <small>Note: An account activation email will be sent to the email address you provide.</small>
-          <label htmlFor="">Password:</label>
-          <input type="text"/>
-          <label htmlFor="">Password(again):</label>
-          <input type="text"/>
+          <div id='reg-modal-img-con'>
+            <img src={smallLogo} alt=""/>
+          </div>
+          <div className="reg-modal-inp">
+            <label htmlFor="">Username:</label>
+            <input type="text"/>
+            <label htmlFor="">E-mail:</label>
+            <input type="text"/>
+            <label htmlFor="">E-mail (again):</label>
+            <input type="text"/>
+            <small>Note: An account activation email will be sent to the email address you provide.</small>
+            <label htmlFor="">Password:</label>
+            <input type="text"/>
+            <label htmlFor="">Password(again):</label>
+            <input type="text"/>
           <ReCAPTCHA
+            className='recap'
             sitekey='6LeWRX8UAAAAAI4SrinrHezVcLhTG7dzguBymoO2'
             onChange={()=>this.reCaptcha()}
           />
+          </div>
+          <button>Register</button>
         </div>
       </Modal>
         <div className='width'>
