@@ -4,10 +4,12 @@ import Logo from '../../Assets/pcpp.png'
 import EmptyMail from '../../Assets/mail-empty-icon.png'
 import Flag from '../../Assets/flag-usa.png'
 import DownArrow from '../../Assets/dropdown-arrow.png'
+import smallLogo from '../../Assets/pcpp-mark.svg'
 import '../../styles/index.css'
 import { connect } from 'react-redux'
 import { addSession } from '../../Ducks/Reducer'
 import Modal from 'react-modal'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 const modalStyles = {
   content:{
@@ -21,15 +23,13 @@ const modalStyles = {
     height                : '550px',
     background            : 'rgb(247, 247, 247)',
     borderRadius          : '8px',
-    boxShadow             : '7px 7px 5px 0px rgba(0,0,0,0.34)',
-    border                : '.5px solid rgba(0,0,0,.4)',
-    overflowX:'hidden'
+    boxShadow             : '2px 2px 4px 2px rgba(0,0,0,0.34)',
+    border                : '.5px solid rgba(0,0,0,.4)'
   },
   overlay:{
     background:'rgb(90, 93, 116)',
     width:'100%',
     height:'100vh',
-    overflow:'hidden'
   }
 }
 
@@ -45,16 +45,25 @@ class Header extends Component {
   componentDidMount(){
     Modal.setAppElement('body')
   }
-  openModal(){
+  openLogModal(){
     this.setState({logModal:true})
   }
-  closeModal(){
+  closoLogModal(){
     this.setState({logModal:false})
+  }
+  openRegModal(){
+    this.setState({regModal:true})
+  }
+  closeRegModal(){
+    this.setState({regModal:false})
   }
   handleInput(event){
     let name = event.target.name
     let val = event.target.value
     this.setState({[name]:val})
+  }
+  reCaptcha(val){
+    console.log('Captcha Value', val)
   }
   render() {
     console.log(this.state)
@@ -63,10 +72,50 @@ class Header extends Component {
       <Modal
         isOpen={this.state.logModal}
         style={modalStyles}
-        onRequestClose={()=>this.closeModal()}
+        onRequestClose={()=>this.closoLogModal()}
       >
-        
-      </Modal>       
+      <div id='login-modal'>
+        <h1>PCPartPicker - Login</h1>
+        <div id='log-modal-img-con'><img src={smallLogo} alt=""/></div>
+        <div id='log-mod-inp'>
+          <label htmlFor="">Username</label>
+          <input type="text"/>
+          <label htmlFor="">Password</label>
+          <input type="text"/>
+        </div>
+        <div id='check-log'>
+          <input type='checkbox'/>
+          <p>Remeber Me</p>          
+        </div>
+        <button>Log In</button>
+        <p>Want to join? Register here. it's free!</p>
+        <p>Forgot your Password?</p>
+      </div>
+      </Modal>
+      <Modal
+        isOpen={this.state.regModal}
+        style={modalStyles}
+        onRequestClose={()=>this.closeRegModal()}
+      >
+        <div>
+          <h1>PCPartPicker - Register</h1>
+          <label htmlFor="">Username:</label>
+          <input type="text"/>
+          <label htmlFor="">E-mail:</label>
+          <input type="text"/>
+          <label htmlFor="">E-mail (again):</label>
+          <input type="text"/>
+          <small>Note: An account activation email will be sent to the email address you provide.</small>
+          <label htmlFor="">Password:</label>
+          <input type="text"/>
+          <label htmlFor="">Password(again):</label>
+          <input type="text"/>
+          <ReCAPTCHA
+            sitekey='6LeWRX8UAAAAAI4SrinrHezVcLhTG7dzguBymoO2'
+            onChange={()=>this.reCaptcha()}
+          />
+        </div>
+      </Modal>
         <div className='width'>
           <div className='header'>
           <Link to='/'>
@@ -92,8 +141,8 @@ class Header extends Component {
                     : (
                       <Fragment>
                         <ul className='head-nav-login'>
-                          <li onClick={()=>this.openModal()}>Login</li> |
-                          <li>Register</li> |
+                          <li onClick={()=>this.openLogModal()}>Login</li> |
+                          <li onClick={()=>this.openRegModal()}>Register</li> |
                           <li><img className='flag' src={Flag} alt=""/> United States <img className='down-arrow' src={DownArrow} alt=""/></li>
                         </ul>
                       </Fragment>
