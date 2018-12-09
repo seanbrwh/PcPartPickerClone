@@ -55,6 +55,9 @@ nav{
 .head-nav-login li{
   font-weight: bold; 
 }
+.head-nav-login:hover{
+  cursor: pointer;
+}
 .logo{
   width: 222px;
   height: 48px;
