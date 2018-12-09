@@ -1,0 +1,1 @@
+select * from users where username = $1 and email = $2 

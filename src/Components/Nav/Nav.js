@@ -41,8 +41,7 @@ class Nav extends Component{
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-  render(){
-    console.log(this.state)
+  render(){    
     return (
       <nav>
         <div className="width">

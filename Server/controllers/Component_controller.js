@@ -7,7 +7,8 @@ module.exports = {
       } catch (error) {
         console.log(error)
       }
-  },getcpucooler: async (req,res) => {
+  },
+  getcpucooler: async (req,res) => {
     try {
       let db = req.app.get('db')
       const cpucooler = await db.cpucooler.allcpucooler()

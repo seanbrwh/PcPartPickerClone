@@ -1,32 +1,26 @@
 require('dotenv').config();
 const express = require('express'),
       bodyParser = require('body-parser'),
-      // session = require('express-session'),
+      session = require('express-session'),
       massive = require('massive'),
-      comp_crtl = require('./controllers/Component_controller');
+      comp_crtl = require('./controllers/Component_controller'),
+      user_crtl = require('./controllers/User_controller');
 
 const app = express();
-const {SERVER_PORT, CON_STRING,DB_PASS} = process.env;
+const { SERVER_PORT , CON_STRING, SESSION_SECRET} = process.env;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-// app.use(session({
-//   secret:'12p09s9s9df91',
-//   resave:false,
-//   saveUninitialized:false
-// }))
+app.use(session({
+  secret:SESSION_SECRET,
+  resave:false,
+  saveUninitialized:false
+}))
 app.use( express.static( `${__dirname}/../build` ) )
 
 
-app.get('/api/cpu', async (req,res)=>{
-  try {
-    let db = req.app.get('db');             
-    const cpu = await db.cpu.allcpu();
-    res.send(cpu)
-  } catch (error) {
-    console.log(error)
-  }
-})
+//COMPONENTS
+app.get('/api/cpu', comp_crtl.getCpu)
 app.get('/api/cpu-cooler', comp_crtl.getcpucooler)
 // app.get('/api/comp-case', comp_crtl.getCompCase)
 // app.get('/api/case-fan', comp_crtl.getCaseFan)
@@ -51,19 +45,22 @@ app.get('/api/cpu-cooler', comp_crtl.getcpucooler)
 // app.get('/api/wired-network', comp_crtl.get_wired_network)
 // app.get('/api/wireless-network', comp_crtl.get_wireless_network)
 
-massive({
-  host:'ec2-54-83-8-246.compute-1.amazonaws.com',
-  port:5432,
-  database:'djnq6mm6e1btm',
-  user:'nreykeglqvgnxv',
-  password:DB_PASS,
-  ssl:true,
-  poolsize:10
-}).then(db=>{
-  app.set('db',db);
-  console.log('Connected To Database');
+//USERS
+app.post('/api/register', user_crtl.register)
+app.post('/api/login', user_crtl.login)
+app.get('/api/logout', user_crtl.logout)
 
-  app.listen(SERVER_PORT, ()=>{
-    console.log(`Server Active on PORT:${SERVER_PORT}`)
+
+try {
+  massive(CON_STRING).then(db=>{
+    app.set('db',db);
+    console.log('Connected To Database');
+  
+    app.listen(SERVER_PORT, ()=>{
+      console.log(`Server Active on PORT:${SERVER_PORT}`)
+    })
   })
-})
+  
+} catch (error) {
+  console.log(error)
+}

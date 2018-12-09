@@ -134,8 +134,20 @@ nav{
   padding-right: 10px;
   padding-left: 10px;
   text-align: left !important;
-  border: .5px solid rgba(150, 150, 150, .2);
   cursor: pointer;
+}
+.nav-item:nth-child(1){
+  border-left: .5px solid rgb(93, 93, 101);
+  border-right: .5px solid rgb(93, 93, 101);
+}
+.nav-item:nth-child(2){
+  border-right: .5px solid rgb(93, 93, 101);
+}
+.nav-item:nth-child(3){
+  border-right: .5px solid rgb(93, 93, 101);
+}
+.nav-item:nth-child(4){
+  border-right: .5px solid rgb(93, 93, 101);
 }
 .nav-item:hover{
   background: rgb(52, 56, 74);
@@ -1111,6 +1123,12 @@ table  tr:nth-child(even){
   box-shadow: rgba(0, 0, 0, 0.21) 0px 1px 2px 0px inset, rgb(236, 236, 236) 0px 0px 0px 1px inset;
   border-radius: 4px;
   margin-bottom: 5px;
+}
+#reg-modal p{
+  color: red;
+  text-indent: 10px;
+  font-variant: small-caps;
+  font-weight: 600;
 }
 .recap{
   margin: 20px 0;
