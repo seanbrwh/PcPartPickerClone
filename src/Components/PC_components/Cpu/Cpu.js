@@ -25,7 +25,7 @@ class Cpu extends Component {
       rand:0,
       manufacturer:''
     }
-    this.handleCheck.bind(this)
+    
   }
   handleChange = (event, value) => {
     this.setState({ value })
@@ -36,7 +36,6 @@ class Cpu extends Component {
   render() {
     const {value, min, max} = this.state;
     const {classes} = this.props;
-    console.log(this.state.manufacturer)
     return (
       <div>
         <div className="current-part-list-full">

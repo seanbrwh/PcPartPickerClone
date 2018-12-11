@@ -39,5 +39,5 @@
     "not op_mini all"
   ],
   "main": "./Server/index.js",
-  "proxy": "http://localhost:4004"
+  "proxy":"http://localhost:4004"
 }

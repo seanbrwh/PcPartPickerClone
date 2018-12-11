@@ -14,7 +14,16 @@ module.exports = {
       const cpucooler = await db.cpucooler.allcpucooler()
       res.status(200).send(cpucooler)
     } catch (error) {
-      
+      console.log(error)
+    }
+  },
+  getMotherboard: async (req,res) => {
+    try {
+      let db = req.app.get('db')
+      const motherboard = await db.motherboard.allMotherboard()
+      res.status(200).send(motherboard)
+    } catch (error) {
+      console.log(error)
     }
   }
 }

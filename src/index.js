@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {HashRouter as Router} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './Ducks/Store'
 
 ReactDOM.render(
-<Router>
+<HashRouter>
   <Provider store={store}>
     <App />
   </Provider>
-</Router>
+</HashRouter>
 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

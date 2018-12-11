@@ -27,8 +27,7 @@ module.exports = {
       let user = await db.User.find_log_user([logEmail])
       bcrypt.compare(logPass, user[0].password, (err, response)=>{
         if(response == true){
-          req.session.user = {user_id:user[0].user_id,username:user[0].username,userEmail:user[0].email}
-          console.log(req.session.user)
+          req.session.user = {user_id:user[0].user_id,username:user[0].username,userEmail:user[0].email}          
           res.status(200).send(req.session.user)
         }else{
           res.send('User Does not exist')
@@ -43,7 +42,7 @@ module.exports = {
       req.session.destroy()
       res.status(200).send(req.session)
     } catch (error) {
-      console.log(error)
+      res.send('Logged Out')
     }
   }
 }
