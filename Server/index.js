@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express'),
       bodyParser = require('body-parser'),
       session = require('express-session'),
-      massive = require('massive'),
-      comp_crtl = require('./controllers/Component_controller'),
+      massive = require('massive');
+let comp_crtl = require('./controllers/Component_controller'),
       user_crtl = require('./controllers/User_controller'),
       list_crtl = require('./controllers/ListController');
 
