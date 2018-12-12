@@ -25,7 +25,7 @@ app.use( express.static( `${__dirname}/../build` ) )
 app.get('/api/cpu', async (req,res) => {      
   try {
     let db = req.app.get('db');             
-    const cpu = await db.cpu.allcpu();
+    let cpu = await db.cpu.allcpu();
     res.send(cpu)
   } catch (error) {
     console.log(error)
@@ -34,7 +34,7 @@ app.get('/api/cpu', async (req,res) => {
 app.get('/api/cpu-cooler', async (req,res) => {
   try {
     let db = req.app.get('db')
-    const cpucooler = await db.cpucooler.allcpucooler()
+    let cpucooler = await db.cpucooler.allcpucooler()
     res.status(200).send(cpucooler)
   } catch (error) {
     console.log(error)
@@ -43,7 +43,7 @@ app.get('/api/cpu-cooler', async (req,res) => {
 app.get('/api/motherboard',  async (req,res) => {
   try {
     let db = req.app.get('db')
-    const motherboard = await db.motherboard.allMotherboard()
+    let motherboard = await db.motherboard.allMotherboard()
     res.status(200).send(motherboard)
   } catch (error) {
     console.log(error)
@@ -52,7 +52,7 @@ app.get('/api/motherboard',  async (req,res) => {
 app.get('/api/memory', async (req,res) => {
   try {
     let db = req.app.get('db')
-    const memory = await db.Memory.allmemory()
+    let memory = await db.Memory.allmemory()
       res.status(200).send(memory)      
   } catch (error) {
     console.log(error)
@@ -61,7 +61,7 @@ app.get('/api/memory', async (req,res) => {
 app.get('/api/internal-storage', async (req,res) => {
   try {
     let db = req.app.get('db')
-    const internalStorage = await db.intstorage.allintstorage()
+    let internalStorage = await db.intstorage.allintstorage()
     res.status(200).send(internalStorage)
   } catch (error) {
     console.log(error)
@@ -70,7 +70,7 @@ app.get('/api/internal-storage', async (req,res) => {
 app.get('/api/video-card', async (req,res) => {
   try {
     let db = req.app.get('db')
-    const videoCard = await db.videocard.allvideocard()      
+    let videoCard = await db.videocard.allvideocard()      
     res.status(200).send(videoCard)
   } catch (error) {
     console.log(error)
@@ -79,7 +79,7 @@ app.get('/api/video-card', async (req,res) => {
 app.get('/api/comp-case', async (req,res) => {
   try {
     let db = req.app.get('db')
-    const compcase = await db.compcase.allcompcase()
+    let compcase = await db.compcase.allcompcase()
     res.status(200).send(compcase)
   } catch (error) {
     console.log(error)
@@ -88,7 +88,7 @@ app.get('/api/comp-case', async (req,res) => {
 app.get('/api/power-supply', async (req,res) => {
   try {
     let db = req.app.get('db')
-    const psu = await db.psu.allpsu()
+    let psu = await db.psu.allpsu()
     res.status(200).send(psu)
   } catch (error) {
     console.log(error)
