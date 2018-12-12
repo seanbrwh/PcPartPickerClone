@@ -1,0 +1,1 @@
+SELECT * FROM video_card;
