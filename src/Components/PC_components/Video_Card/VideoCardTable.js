@@ -123,7 +123,7 @@ class VideoCardTable extends Component {
                   <td>{e.coreclock}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=> this.props.addVideoCard(e.video_card_id)}>Add</button> </td>
+                  <td> <button onClick={()=> this.props.addVideoCard(e.video_card_name)}>Add</button> </td>
                   </tr>
                 )
               })

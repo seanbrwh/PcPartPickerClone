@@ -123,7 +123,7 @@ class CpuTable extends Component {
                   <td>{e.thermaldesignpower}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={() => this.props.addCpu(e.cpu_id)}>Add</button> </td>                  
+                  <td> <button onClick={() => this.props.addCpu(e.cpuname)}>Add</button> </td>                  
                   </tr>
                 )
               })

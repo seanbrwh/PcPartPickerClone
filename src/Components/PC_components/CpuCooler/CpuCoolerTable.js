@@ -118,7 +118,7 @@ class CpuCoolerTable extends Component {
                   <td>{e.noiselevel}</td>                                 
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=> this.props.addCpuCooler(e.cpu_cooler_id)}>Add</button> </td>
+                  <td> <button onClick={()=> this.props.addCpuCooler(e.cpu_cooler_name)}>Add</button> </td>
                   </tr>
                 )
               })

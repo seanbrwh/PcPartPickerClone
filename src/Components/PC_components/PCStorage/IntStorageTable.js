@@ -127,7 +127,7 @@ class IntStorageTable extends Component {
                   <td>{e.pricepergb}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=>this.props.addStorage(e.int_storage_id)}>Add</button> </td>
+                  <td> <button onClick={()=>this.props.addStorage(e.int_storage_name)}>Add</button> </td>
                   </tr>
                 )
               })

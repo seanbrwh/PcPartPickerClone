@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import '../../styles/index.css'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import axios from 'axios'
 
 class List extends Component {
   constructor(){
@@ -10,15 +9,7 @@ class List extends Component {
     this.state = {
       expansion:false,
       per: false,
-      accesories:false,
-      compcase:0,
-      cpu:0,
-      cpuCooler:0,
-      memory:0,
-      motherboard:0,
-      psu:0,
-      storage:0,
-      video_card:0
+      accesories:false     
     }
   }
   handleExp(){    
@@ -29,16 +20,8 @@ class List extends Component {
   }
   handleAcc(){    
     this.setState({accesories:!this.accesories})
-  }
-  componentDidMount(){
-    if(this.props.list.cpu !== this.state.cpu){
-      axios.get(`/api/cpu/${this.props.list.cpu}`).then(res=>{
-        this.setState({cpu:res.data})
-      })
-    }
-  }
+  }  
   render() {
-    console.log(this.props.list)    
     const {expansion,per,accesories} = this.state
     return (
       <div>
@@ -54,7 +37,7 @@ class List extends Component {
         </div>
         <div className='component-table'>
           <table>
-            <tbody>
+            <tbody id='list-table'>
             <tr id='table-head'>
               <th id='component'>Component</th>
               <th id='selection'>Selection</th>
@@ -69,14 +52,16 @@ class List extends Component {
               <td>CPU</td>               
               <td>
                 <Link to='/cpu'>
-                {this.state.cpu === 0 ? 
-                  (<button>
-                  Choose a CPU
-                  </button>  )
-                  :                  
-                    this.state.cpu[0].cpuname                  
+                {
+                  this.props.list.cpu === 0 ? 
+                  <button>
+                    Choose a CPU
+                  </button>
+                  :
+                  <p>
+                    {this.props.list.cpu}
+                  </p>
                 }
-                  
                 </Link>
               </td>
               <td></td>
@@ -90,9 +75,16 @@ class List extends Component {
               <td>CPU Cooler</td>
               <td>
                 <Link to='/cpu-cooler'>
+                {this.props.list.cpuCooler === 0
+                ?
                   <button>
                     Choose a CPU Cooler
                   </button>
+                  :
+                  <p>
+                    {this.props.list.cpuCooler}
+                  </p>                  
+                }
                 </Link>
               </td>
               <td></td>
@@ -106,9 +98,16 @@ class List extends Component {
               <td>Motherboard</td>
               <td>
                 <Link to='motherboard'>
+                {this.props.list.motherboard === 0 
+                ?
                   <button>
                     Choose a Motherboard
                   </button>
+                  : 
+                  <p>
+                    {this.props.list.motherboard}
+                  </p>
+                }
                 </Link>
               </td>
               <td></td>
@@ -122,9 +121,16 @@ class List extends Component {
               <td>Memory</td>
               <td>
                 <Link to='/memory'>
+                {this.props.list.memory === 0 
+                ?
                   <button>
                     Choose Memory 
                   </button>
+                :
+                <p>
+                  {this.props.list.memory}
+                </p>
+                }
                 </Link>
               </td>
               <td></td>
@@ -138,9 +144,16 @@ class List extends Component {
               <td>Storage</td>
               <td>
                 <Link to='/internal-storage'>
+                {this.props.list.storage === 0 
+                ?
                   <button>
                     Choose Storage 
                   </button>
+                  :
+                  <p>
+                    {this.props.list.storage}
+                  </p>
+                }
                 </Link>
               </td>
               <td></td>
@@ -154,9 +167,16 @@ class List extends Component {
               <td>Video Card</td>
               <td>
                 <Link to='/video-card'>
+                {this.props.list.video_card === 0
+                ?
                   <button>
                     Choose a Video Card
                   </button>
+                  :
+                  <p>
+                    {this.props.list.video_card}
+                  </p>
+                }
                 </Link>
               </td>
               <td></td>
@@ -170,7 +190,12 @@ class List extends Component {
               <td>Case</td>
               <td>
                 <Link to='/comp-case'>
-                  <button>Choose a Case</button>
+                {this.props.list.compcase === 0
+                ?
+                <button>Choose a Case</button>
+                :
+                <p>{this.props.list.compcase}</p>
+                }
                 </Link>
               </td>
               <td></td>
@@ -184,7 +209,12 @@ class List extends Component {
               <td>Power Supply</td>
               <td>
                 <Link to='power-supply'>
-                  <button>Choose a Power Supply</button>              
+                {this.props.list.psu === 0 
+                ?
+                <button>Choose a Power Supply</button>              
+                :
+                <p>{this.props.list.psu}</p>
+                }
                 </Link>
               </td>
               <td></td>

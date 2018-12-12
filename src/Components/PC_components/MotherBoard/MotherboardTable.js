@@ -126,7 +126,7 @@ class MotherboardTable extends Component {
                   <td>{e.maximumsupportedmemory}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=> this.props.addMotherboard(e.mb_id)}>Add</button> </td>
+                  <td> <button onClick={()=> this.props.addMotherboard(e.mb_name)}>Add</button> </td>
                   </tr>
                 )
               })

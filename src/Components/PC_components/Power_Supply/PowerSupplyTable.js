@@ -127,7 +127,7 @@ class PowerSupplyTable extends Component {
                     <td>{e.wattage}</td>                  
                     <td>{e.modular}</td>
                     <td> </td>
-                    <td> <button onClick={()=>this.props.addPsu(e.psu_id)}>Add</button> </td>
+                    <td> <button onClick={()=>this.props.addPsu(e.psu_name)}>Add</button> </td>
                   </tr>
                 )
               })

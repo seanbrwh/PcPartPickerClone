@@ -130,7 +130,7 @@ class MemoryTable extends Component {
                   <td>{e.pricepergb}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=>this.props.addMemory(e.mem_id)}>Add</button> </td>
+                  <td> <button onClick={()=>this.props.addMemory(e.mem_name)}>Add</button> </td>
                   </tr>
                 )
               })

@@ -130,7 +130,7 @@ class CompCaseTable extends Component {
                   <td>{e.includespowersupply}</td>
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=>this.props.addCase(e.case_id)}>Add</button> </td>
+                  <td> <button onClick={()=>this.props.addCase(e.case_name)}>Add</button> </td>
                   </tr>
                 )
               })
