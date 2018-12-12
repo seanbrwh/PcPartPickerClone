@@ -2,10 +2,11 @@ require('dotenv').config();
 const express = require('express'),
       bodyParser = require('body-parser'),
       session = require('express-session'),
-      massive = require('massive');
-let comp_crtl = require('./controllers/Component_controller'),
-      user_crtl = require('./controllers/User_controller'),
-      list_crtl = require('./controllers/ListController');
+      massive = require('massive'),
+      bcrypt = require('bcrypt');
+      // user_crtl = require('./controllers/User_controller'),
+      // comp_crtl = require('./controllers/Component_controller'),
+      // list_crtl = require('./controllers/ListController');
 
 const app = express();
 const { SERVER_PORT , CON_STRING, SESSION_SECRET} = process.env;
@@ -21,15 +22,78 @@ app.use( express.static( `${__dirname}/../build` ) )
 
 
 //COMPONENTS
-app.get('/api/cpu', comp_crtl.getCpu)
-app.get('/api/cpu/:id', list_crtl.getcpu)
-app.get('/api/cpu-cooler', comp_crtl.getcpucooler)
-app.get('/api/motherboard', comp_crtl.getMotherboard)
-app.get('/api/memory', comp_crtl.getMemory)
-app.get('/api/internal-storage', comp_crtl.getinternalstorage)
-app.get('/api/video-card', comp_crtl.getvideocard)
-app.get('/api/comp-case', comp_crtl.getCompCase)
-app.get('/api/power-supply', comp_crtl.getpowersupply)
+app.get('/api/cpu', async (req,res) => {      
+  try {
+    let db = req.app.get('db');             
+    const cpu = await db.cpu.allcpu();
+    res.send(cpu)
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/cpu-cooler', async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    const cpucooler = await db.cpucooler.allcpucooler()
+    res.status(200).send(cpucooler)
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/motherboard',  async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    const motherboard = await db.motherboard.allMotherboard()
+    res.status(200).send(motherboard)
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/memory', async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    const memory = await db.Memory.allmemory()
+      res.status(200).send(memory)      
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/internal-storage', async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    const internalStorage = await db.intstorage.allintstorage()
+    res.status(200).send(internalStorage)
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/video-card', async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    const videoCard = await db.videocard.allvideocard()      
+    res.status(200).send(videoCard)
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/comp-case', async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    const compcase = await db.compcase.allcompcase()
+    res.status(200).send(compcase)
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/power-supply', async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    const psu = await db.psu.allpsu()
+    res.status(200).send(psu)
+  } catch (error) {
+    console.log(error)
+  }
+})
 // app.get('/api/case-fan', comp_crtl.getCaseFan)
 // app.get('/api/speakers', comp_crtl.get_speakers)
 // app.get('/api/external-storage', comp_crtl.get_external_storage)
@@ -48,9 +112,51 @@ app.get('/api/power-supply', comp_crtl.getpowersupply)
 // app.get('/api/wireless-network', comp_crtl.get_wireless_network)
 
 //USERS
-app.post('/api/register', user_crtl.register)
-app.post('/api/login', user_crtl.login)
-app.get('/api/logout', user_crtl.logout)
+app.post('/api/register',  async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    let {regUser, regEmail,regPass} = req.body
+    const saltRounds = 10
+    let userCheck = await db.User.find_user([regUser, regEmail])
+    if(userCheck[0]){
+      res.status(200).send('User Already Exists')
+    }else{
+      bcrypt.hash(regPass, saltRounds, async (err, hash)=>{
+        let createdUser = await db.User.create_user([regUser,regEmail,hash])
+        req.session.user = createdUser[0]
+        res.status(200).send(req.session.user)
+      })
+    }
+    
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.post('/api/login', async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    let {logEmail,logPass} = req.body
+    let user = await db.User.find_log_user([logEmail])
+    bcrypt.compare(logPass, user[0].password, (err, response)=>{
+      if(response == true){
+        req.session.user = {user_id:user[0].user_id,username:user[0].username,userEmail:user[0].email}          
+        res.status(200).send(req.session.user)
+      }else{
+        res.send('User Does not exist')
+      }
+    })
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/logout', async (req,res) => {
+  try {
+    req.session.destroy()
+    res.status(200).send(req.session)
+  } catch (error) {
+    res.send('Logged Out')
+  }
+})
 
 
 
