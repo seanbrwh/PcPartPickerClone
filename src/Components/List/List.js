@@ -1,14 +1,24 @@
 import React, { Component } from 'react'
 import '../../styles/index.css'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import axios from 'axios'
 
-export default class List extends Component {
+class List extends Component {
   constructor(){
     super()
     this.state = {
       expansion:false,
       per: false,
-      accesories:false
+      accesories:false,
+      compcase:0,
+      cpu:0,
+      cpuCooler:0,
+      memory:0,
+      motherboard:0,
+      psu:0,
+      storage:0,
+      video_card:0
     }
   }
   handleExp(){    
@@ -20,7 +30,15 @@ export default class List extends Component {
   handleAcc(){    
     this.setState({accesories:!this.accesories})
   }
+  componentDidMount(){
+    if(this.props.list.cpu !== this.state.cpu){
+      axios.get(`/api/cpu/${this.props.list.cpu}`).then(res=>{
+        this.setState({cpu:res.data})
+      })
+    }
+  }
   render() {
+    console.log(this.props.list)    
     const {expansion,per,accesories} = this.state
     return (
       <div>
@@ -36,6 +54,7 @@ export default class List extends Component {
         </div>
         <div className='component-table'>
           <table>
+            <tbody>
             <tr id='table-head'>
               <th id='component'>Component</th>
               <th id='selection'>Selection</th>
@@ -47,12 +66,17 @@ export default class List extends Component {
               <th id='where'>Where</th>
             </tr>            
             <tr>
-              <td>CPU</td>
+              <td>CPU</td>               
               <td>
                 <Link to='/cpu'>
-                  <button>
-                    Choose a CPU
-                  </button>
+                {this.state.cpu === 0 ? 
+                  (<button>
+                  Choose a CPU
+                  </button>  )
+                  :                  
+                    this.state.cpu[0].cpuname                  
+                }
+                  
                 </Link>
               </td>
               <td></td>
@@ -327,9 +351,17 @@ export default class List extends Component {
               <td></td>
               <td></td>
             </tr>
+            </tbody>
           </table>
         </div>
       </div>
     )
   }
 }
+function mapState(state){
+  let { list } = state
+  return {
+    list
+  }
+}
+export default connect(mapState)(List)

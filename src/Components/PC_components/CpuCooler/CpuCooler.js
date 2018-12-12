@@ -40,7 +40,7 @@ class CpuCooler extends Component {
       <div>
       <div className="current-part-list-full">
         <div className='part-banner'>
-          <h1>Choose A Case</h1>
+          <h1>Choose A Cpu Cooler</h1>
         </div>
       </div>
       <div className='case-page'>

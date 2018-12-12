@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Pagination from '../Pagination/Pagination';
+import { connect } from 'react-redux'
+import { addStorage } from '../../../Ducks/Reducer'
+import { withRouter } from 'react-router-dom'
 
-export default class IntStorageTable extends Component {
+
+class IntStorageTable extends Component {
   constructor(){
     super()
     this.state = {
@@ -123,7 +127,7 @@ export default class IntStorageTable extends Component {
                   <td>{e.pricepergb}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button>Add</button> </td>
+                  <td> <button onClick={()=>this.props.addStorage(e.int_storage_id)}>Add</button> </td>
                   </tr>
                 )
               })
@@ -142,3 +146,10 @@ export default class IntStorageTable extends Component {
     )
   }
 }
+function mapState(state){
+  let {list} = state 
+  return {
+    list
+  }
+}
+export default withRouter(connect(mapState, {addStorage})(IntStorageTable))

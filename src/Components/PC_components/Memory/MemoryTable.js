@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Pagination from '../Pagination/Pagination';
+import { connect } from 'react-redux'
+import { addMemory } from '../../../Ducks/Reducer'
+import { withRouter } from 'react-router-dom'
 
-export default class MemoryTable extends Component {
+class MemoryTable extends Component {
   constructor(){
     super()
     this.state = {
@@ -127,7 +130,7 @@ export default class MemoryTable extends Component {
                   <td>{e.pricepergb}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button>Add</button> </td>
+                  <td> <button onClick={()=>this.props.addMemory(e.mem_id)}>Add</button> </td>
                   </tr>
                 )
               })
@@ -146,3 +149,10 @@ export default class MemoryTable extends Component {
     )
   }
 }
+function mapState(state){
+  let {list} = state
+  return {
+    list
+  }
+}
+export default withRouter(connect(mapState, {addMemory})(MemoryTable))

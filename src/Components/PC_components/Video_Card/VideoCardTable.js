@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Pagination from '../Pagination/Pagination';
+import { connect } from 'react-redux'
+import { addVideoCard } from '../../../Ducks/Reducer'
+import { withRouter } from 'react-router-dom'
 
 
-export default class VideoCardTable extends Component {
+class VideoCardTable extends Component {
   constructor(){
     super()
     this.state = {
@@ -120,7 +123,7 @@ export default class VideoCardTable extends Component {
                   <td>{e.coreclock}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button>Add</button> </td>
+                  <td> <button onClick={()=> this.props.addVideoCard(e.video_card_id)}>Add</button> </td>
                   </tr>
                 )
               })
@@ -139,3 +142,10 @@ export default class VideoCardTable extends Component {
     )
   }
 }
+function mapState(state){
+  let { list } = state
+  return {
+    list
+  }
+}
+export default withRouter(connect(mapState, {addVideoCard})(VideoCardTable))

@@ -4,7 +4,8 @@ const express = require('express'),
       session = require('express-session'),
       massive = require('massive'),
       comp_crtl = require('./controllers/Component_controller'),
-      user_crtl = require('./controllers/User_controller');
+      user_crtl = require('./controllers/User_controller'),
+      list_crtl = require('./controllers/ListController');
 
 const app = express();
 const { SERVER_PORT , CON_STRING, SESSION_SECRET} = process.env;
@@ -21,6 +22,7 @@ app.use( express.static( `${__dirname}/../build` ) )
 
 //COMPONENTS
 app.get('/api/cpu', comp_crtl.getCpu)
+app.get('/api/cpu/:id', list_crtl.getcpu)
 app.get('/api/cpu-cooler', comp_crtl.getcpucooler)
 app.get('/api/motherboard', comp_crtl.getMotherboard)
 app.get('/api/memory', comp_crtl.getMemory)
@@ -49,6 +51,8 @@ app.get('/api/power-supply', comp_crtl.getpowersupply)
 app.post('/api/register', user_crtl.register)
 app.post('/api/login', user_crtl.login)
 app.get('/api/logout', user_crtl.logout)
+
+
 
 
 try {

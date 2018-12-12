@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Pagination from '../Pagination/Pagination'
+import { connect } from 'react-redux'
+import { addMotherboard } from '../../../Ducks/Reducer'
+import { withRouter } from 'react-router-dom'
 
-export default class MotherboardTable extends Component {
+class MotherboardTable extends Component {
   constructor(){
     super()
     this.state = {
@@ -123,7 +126,7 @@ export default class MotherboardTable extends Component {
                   <td>{e.maximumsupportedmemory}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button>Add</button> </td>
+                  <td> <button onClick={()=> this.props.addMotherboard(e.mb_id)}>Add</button> </td>
                   </tr>
                 )
               })
@@ -142,3 +145,10 @@ export default class MotherboardTable extends Component {
     )
   }
 }
+function mapState(state){
+  let {list} = state 
+  return {
+    list
+  }
+}
+export default withRouter(connect(mapState, {addMotherboard})(MotherboardTable))

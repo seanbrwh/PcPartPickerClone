@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Pagination from '../Pagination/Pagination';
+import { connect } from 'react-redux'
+import { addCpu } from '../../../Ducks/Reducer'
+import { withRouter } from 'react-router-dom'
 
-export default class CpuTable extends Component {
+class CpuTable extends Component {
   constructor(){
     super()
     this.state = {
@@ -77,6 +80,7 @@ export default class CpuTable extends Component {
     this.setState({currentCpus: arrayCopy})
   }
   render() {
+    console.log(this.props.list)
     const {
       cpu,      
     } = this.state;
@@ -119,7 +123,7 @@ export default class CpuTable extends Component {
                   <td>{e.thermaldesignpower}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button>Add</button> </td>
+                  <td> <button onClick={() => this.props.addCpu(e.cpu_id)}>Add</button> </td>                  
                   </tr>
                 )
               })
@@ -138,3 +142,11 @@ export default class CpuTable extends Component {
     )
   }
 }
+function mapState(state){
+  let {list} = state
+  return {
+    list
+  }
+}
+
+export default withRouter(connect(mapState, {addCpu})(CpuTable))

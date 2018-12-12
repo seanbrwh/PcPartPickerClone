@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Pagination from '../Pagination/Pagination';
+import { connect } from 'react-redux'
+import { addCase } from '../../../Ducks/Reducer'
+import { withRouter } from 'react-router-dom'
 
 
-export default class Compc_caseTable extends Component {
+
+class CompCaseTable extends Component {
   constructor(){
     super()
     this.state = {
@@ -126,7 +130,7 @@ export default class Compc_caseTable extends Component {
                   <td>{e.includespowersupply}</td>
                   <td> </td>
                   <td> </td>
-                  <td> <button>Add</button> </td>
+                  <td> <button onClick={()=>this.props.addCase(e.case_id)}>Add</button> </td>
                   </tr>
                 )
               })
@@ -145,3 +149,10 @@ export default class Compc_caseTable extends Component {
     )
   }
 }
+function mapState(state){
+  let { list } = state  
+  return {
+    list
+  }
+}
+export default withRouter(connect(mapState, {addCase})(CompCaseTable))
