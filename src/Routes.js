@@ -28,6 +28,7 @@ import UPS from './Components/PC_components/UPS/UPS'
 import Video_Card from './Components/PC_components/Video_Card/Video_Card'
 import Wired_NetWork_Card from './Components/PC_components/Wired_NetWork_Card/Wired_NetWork_Card'
 import Wireless_Network_Card from './Components/PC_components/Wireless_Network_Card/Wireless_Network_Card'
+import CpuPage from './Components/PC_components/Cpu/CpuPage'
 
 
 export default(
@@ -60,6 +61,6 @@ export default(
     <Route path='/video-card' component={Video_Card}/>
     <Route path='/wired-network-card' component={Wired_NetWork_Card}/>
     <Route path='/wireless-network-card' component={Wireless_Network_Card}/>
-
+    <Route path='/cpu/:id' component={CpuPage}/>
   </Switch>
 )

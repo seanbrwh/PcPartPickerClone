@@ -31,6 +31,16 @@ app.get('/api/cpu', async (req,res) => {
     console.log(error)
   }
 })
+app.get('/api/cpu/:id', async (req,res)=>{
+  try {
+    let db = req.app.get('db')
+    let {id} = req.params
+    let cpu = await db.cpu.getsinglecpu(id);
+    res.send(cpu)
+  } catch (error) {
+    console.log(error)    
+  }
+})
 app.get('/api/cpu-cooler', async (req,res) => {
   try {
     let db = req.app.get('db')

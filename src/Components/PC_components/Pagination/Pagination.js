@@ -123,9 +123,10 @@ export default class Pagination extends Component {
     const pages = this.fetchPageNumbers();
 
     return (
-      <Fragment>
+      <Fragment className='pagination'>        
         <nav id='pagination'>
           <ul>
+            Page
             {pages.map((page, index) => {
               if (page === LEFT_PAGE)
                 return (
@@ -153,19 +154,19 @@ export default class Pagination extends Component {
                   </li>
                 );
 
-              return (
+              return (                
                 <li
                   key={index}
                   className={`page-item${
                     currentPage === page ? " active" : ""
                   }`}
-                >
-                  <button
+                >           
+                  <span
                     className="page-link"                    
                     onClick={e => this.handleClick(page, e)}
                   >
-                    {page}
-                  </button>
+                    {page} 
+                  </span>
                 </li>
               );
             })}

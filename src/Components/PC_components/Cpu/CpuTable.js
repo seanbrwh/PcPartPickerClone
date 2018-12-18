@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Pagination from '../Pagination/Pagination';
+import Rating from '../../Rating/Rating'
 import { connect } from 'react-redux'
 import { addCpu } from '../../../Ducks/Reducer'
-import { withRouter } from 'react-router-dom'
+import { withRouter,Link } from 'react-router-dom'
 
 class CpuTable extends Component {
   constructor(){
@@ -90,40 +91,70 @@ class CpuTable extends Component {
     if (totalCpus === 0) return null;
     return (
       <div>
-        <table>
-          <thead>
+        <table className='table'>
+          <thead className='table-head'>
             <tr>
               <th>&nbsp;</th>
-              <th onClick={()=>this.sortBy('cpuname', this.state.asc)}>
-                Cpu {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+              <th className='table-th' onClick={()=>this.sortBy('cpuname', this.state.asc)}>
+                <p>CPU</p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>
               <th onClick={()=>this.sortBy('operatingfrequency', this.state.asc)}>
-                Speed {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+              <p>Speed</p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>
               <th onClick={()=>this.sortByNum('cores', this.state.asc)}>
-                Cores {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+              <p>Cores</p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>
               <th onClick={()=>this.sortByNum('thermaldesignpower', this.state.asc)}>
-                TDP{this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+              <p>TDP</p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>              
-              <td>Rating</td>
-              <td>Price</td>
-              <td>&nbsp;</td>
+              <th>
+                <p>Rating</p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div></th>
+              <th>
+                <p>Price</p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div></th>
+              <th>&nbsp;</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className='table-body'>
             {
               this.state.currentCpus.map(e=>{
                 return (
                   <tr key={e.cpu_id}>
-                  <td><input type="checkbox"/></td>
-                  <td>{e.cpuname}</td>
-                  <td>{e.operatingfrequency}</td>
-                  <td>{e.cores}</td>
-                  <td>{e.thermaldesignpower}</td>                  
-                  <td> </td>
-                  <td> </td>
-                  <td> <button onClick={() => this.props.addCpu(e.cpuname)}>Add</button> </td>                  
+                    <td><input type="checkbox"/></td>
+                    <td>
+                      <Link to={`cpu/${e.cpu_id}`}>
+                        {e.cpuname}
+                      </Link>
+                    </td>
+                    <td>{e.operatingfrequency}</td>
+                    <td>{e.cores}</td>
+                    <td>{e.thermaldesignpower}</td>                  
+                    <td> <Rating/> </td>
+                    <td> </td>
+                    <td> <button onClick={() => this.props.addCpu(e.cpu_id)}>Add</button> </td>                  
                   </tr>
                 )
               })

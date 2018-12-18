@@ -4,10 +4,11 @@ import Nav from './Components/Nav/Nav'
 import Footer from './Components/Footer/Footer'
 import Routes from './Routes'
 
+
 class App extends Component {
   render() {
-    return (
-      <main>
+    return (    
+      <main>        
         <Header/>
         <Nav/>
           {Routes}

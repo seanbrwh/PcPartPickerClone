@@ -1,1 +1,1 @@
-select cpuname from cpu where cpu_id = $1
+select * from cpu where cpu_id = $1

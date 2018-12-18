@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../styles/index.css'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Axios from 'axios';
 
 class List extends Component {
   constructor(){
@@ -9,7 +10,8 @@ class List extends Component {
     this.state = {
       expansion:false,
       per: false,
-      accesories:false     
+      accesories:false,
+      cpu:[]     
     }
   }
   handleExp(){    
@@ -21,6 +23,11 @@ class List extends Component {
   handleAcc(){    
     this.setState({accesories:!this.accesories})
   }  
+  componentDidMount(){
+    Axios.get(`/api/cpu/${this.props.list.cpu}`).then(res=>{
+      this.setState({cpu:res.data})
+    })
+  }
   render() {
     const {expansion,per,accesories} = this.state
     return (
@@ -49,7 +56,11 @@ class List extends Component {
               <th id='where'>Where</th>
             </tr>            
             <tr>
-              <td>CPU</td>               
+              <td>
+                <Link to='/cpu'>
+                  CPU
+                </Link>
+              </td>               
               <td>
                 <Link to='/cpu'>
                 {
@@ -59,7 +70,9 @@ class List extends Component {
                   </button>
                   :
                   <p>
-                    {this.props.list.cpu}
+                    <Link to={`/cpu/${this.state.cpu.map(e=>e.cpu_id)}`}>
+                      {this.state.cpu.map(e=>e.cpuname)}
+                    </Link>
                   </p>
                 }
                 </Link>
