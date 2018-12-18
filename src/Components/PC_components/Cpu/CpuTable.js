@@ -80,6 +80,10 @@ class CpuTable extends Component {
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
     this.setState({currentCpus: arrayCopy})
   }
+  addCpu(id){
+    this.props.addCpu(id)
+    this.props.history.push('/list')
+  }
   render() {
     console.log(this.props.list)
     const {
@@ -154,7 +158,7 @@ class CpuTable extends Component {
                     <td>{e.thermaldesignpower}</td>                  
                     <td> <Rating/> </td>
                     <td> </td>
-                    <td> <button onClick={() => this.props.addCpu(e.cpu_id)}>Add</button> </td>                  
+                    <td> <button onClick={()=>this.addCpu(e.cpu_id)}>Add</button> </td>                  
                   </tr>
                 )
               })

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import PageRating from '../../PageRating/PageRating'
+import { connect } from 'react-redux'
+import { addCpu } from '../../../Ducks/Reducer'
+import { withRouter } from 'react-router-dom'
 
-export default class CpuPage extends Component {
+class CpuPage extends Component {
   constructor(){
     super()
     this.state = {
@@ -13,6 +16,10 @@ export default class CpuPage extends Component {
     axios.get(`/api/cpu/${this.props.match.params.id}`).then(res=>{
       this.setState({cpu:res.data})
     })
+  }
+  addCpu(id){
+    this.props.addCpu(id)
+    this.props.history.push('/list')
   }
   render() {
     console.log(this.state.cpu)
@@ -39,7 +46,7 @@ export default class CpuPage extends Component {
                 <select name="" id="">
                   <option value="1">1</option>
                 </select>
-                <p>Add to Part List</p>
+                <p onClick={()=>this.addCpu(this.state.cpu.map(e=>e.cpu_id))}>Add to Part List</p>
               </div>
               <div id="save-add-fav">
               <div>
@@ -152,10 +159,17 @@ export default class CpuPage extends Component {
             </div>
           </div>
           <div id='cpu-page-right'>
-            5678
+            
           </div>
         </div>
       </div>
     )
   }
 }
+function mapState(state){
+  let {list} = state
+  return {
+    list
+  }
+}
+export default withRouter(connect(mapState, {addCpu})(CpuPage))
