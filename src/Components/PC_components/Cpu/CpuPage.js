@@ -46,7 +46,7 @@ class CpuPage extends Component {
                 <select name="" id="">
                   <option value="1">1</option>
                 </select>
-                <p onClick={()=>this.addCpu(this.state.cpu.map(e=>e.cpu_id))}>Add to Part List</p>
+                <p id='add-part' onClick={()=>this.addCpu(this.state.cpu.map(e=>e.cpu_id))}>Add to Part List</p>
               </div>
               <div id="save-add-fav">
               <div>

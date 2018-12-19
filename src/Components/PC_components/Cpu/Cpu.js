@@ -4,15 +4,29 @@ import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types';
 import CpuTable from './CpuTable'
 
-const styles = {
+const StyledSlider = withStyles({
   root: {
-    width: '80%',
-    marginTop:'20px',
+    width: '260px',
+    marginTop:'20px',            
+  },
+  track:{
+    background:'rgb(44, 133, 197)',
+    height:'5px'
   },
   slider: {
-    padding: '22px 0px',
+    padding:'200px'
   },
-};
+  thumb: {
+    borderRadius: '50%',
+    background:'white',
+    border:'1px solid lightgrey',
+    height:'20px',
+    width:'20px'
+  },
+  thumbIconWrapper: {
+    backgroundColor: 'white',
+  },
+})(Slider);
 
 
 class Cpu extends Component {
@@ -52,19 +66,18 @@ class Cpu extends Component {
               <label><input type="checkbox"/>Include Mail In Rebates</label>
               <label><input type="checkbox"/>Use Amazon Smile Links</label>
               <span>Show Merchants...</span>
-              <div className={classes.root}>
-              <h3>Price</h3>
-                <div className='money-slider'>
-                  ${this.state.value} - $1900
-                </div>
-                <Slider
-                  classes={{container: classes.Slider}} 
-                  min={min}
-                  max={max}
-                  value={value}
-                  aria-labelledby="label"
-                  onChange={this.handleChange}                                  
-                />
+              <div>
+                <h3>Price</h3>
+                  <div className='money-slider'>
+                    ${this.state.value} - $1900
+                  </div>
+                  <StyledSlider                    
+                    min={min}
+                    max={max}
+                    value={value}
+                    aria-labelledby="label"
+                    onChange={this.handleChange}                                       
+                  />
               </div>
               <div className='comp-build-filter'>
                 <h3>Rating</h3>
@@ -137,72 +150,66 @@ class Cpu extends Component {
                 <label htmlFor=""><input type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
               </div>
-              <div className={classes.root}>
+              <div>
                 <div className='money-slider'>
                   ${this.state.value} - $1900
                 </div>
-                <Slider
-                  classes={{container: classes.Slider}} 
+                <StyledSlider                   
                   min={min}
                   max={max}
                   value={value}
                   aria-labelledby="label"
                   onChange={this.handleChange}                                  
                 />
-              </div><div className={classes.root}>
+              </div><div>
                 <div className='money-slider'>
                   ${this.state.value} - $1900
                 </div>
-                <Slider
-                  classes={{container: classes.Slider}} 
+                <StyledSlider                   
                   min={min}
                   max={max}
                   value={value}
                   aria-labelledby="label"
                   onChange={this.handleChange}                                  
                 />
-              </div><div className={classes.root}>
+              </div><div>
                 <div className='money-slider'>
                   ${this.state.value} - $1900
                 </div>
-                <Slider
-                  classes={{container: classes.Slider}} 
+                <StyledSlider                   
                   min={min}
                   max={max}
                   value={value}
                   aria-labelledby="label"
                   onChange={this.handleChange}                                  
                 />
-              </div><div className={classes.root}>
+              </div><div>
                 <div className='money-slider'>
                   ${this.state.value} - $1900
                 </div>
-                <Slider
-                  classes={{container: classes.Slider}} 
+                <StyledSlider                   
                   min={min}
                   max={max}
                   value={value}
                   aria-labelledby="label"
                   onChange={this.handleChange}                                  
                 />
-              </div><div className={classes.root}>
+              </div><div>
                 <div className='money-slider'>
                   ${this.state.value} - $1900
                 </div>
-                <Slider
-                  classes={{container: classes.Slider}} 
+                <StyledSlider                   
                   min={min}
                   max={max}
                   value={value}
                   aria-labelledby="label"
                   onChange={this.handleChange}                                  
                 />
-              </div><div className={classes.root}>
+              </div><div>
                 <div className='money-slider'>
                   ${this.state.value} - $1900
                 </div>
-                <Slider
-                  classes={{container: classes.Slider}} 
+                <StyledSlider                   
                   min={min}
                   max={max}
                   value={value}
@@ -225,4 +232,4 @@ class Cpu extends Component {
 Slider.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(Cpu)
+export default (Cpu)

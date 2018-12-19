@@ -50,11 +50,31 @@ app.get('/api/cpu-cooler', async (req,res) => {
     console.log(error)
   }
 })
+app.get('/api/cpu-cooler/:id', async (req,res)=>{
+  try {
+    let db = req.app.get('db')
+    let {id} = req.params
+    let cpuCooler = await db.cpucooler.singlecpucooler(id)
+    res.send(cpuCooler)
+  } catch (error) {
+    console.log(error)
+  }
+})
 app.get('/api/motherboard',  async (req,res) => {
   try {
     let db = req.app.get('db')
     let motherboard = await db.motherboard.allMotherboard()
     res.status(200).send(motherboard)
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/motherboard/:id', async (req,res)=>{
+  try {
+    let db = req.app.get('db')
+    let {id} = req.params;
+    let motherboard = await db.motherboard.singlemotherboard(id)
+    res.send(motherboard)
   } catch (error) {
     console.log(error)
   }
@@ -68,11 +88,31 @@ app.get('/api/memory', async (req,res) => {
     console.log(error)
   }
 })
+app.get('/api/memory/:id', async (req,res)=>{
+  try {
+    let db = req.app.get('db')
+    let {id} = req.params
+    let memory = await db.Memory.singlemem(id)
+    res.send(memory)
+  } catch (error) {
+    console.log(error)
+  }
+})
 app.get('/api/internal-storage', async (req,res) => {
   try {
     let db = req.app.get('db')
     let internalStorage = await db.intstorage.allintstorage()
     res.status(200).send(internalStorage)
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/internal-storage/:id', async (req,res) =>{
+  try {
+    let db = req.app.get('db')
+    let {id} = req.params;
+    let intStorage = await db.intstorage.singlestorage(id)
+    res.send(intStorage)
   } catch (error) {
     console.log(error)
   }
@@ -86,6 +126,16 @@ app.get('/api/video-card', async (req,res) => {
     console.log(error)
   }
 })
+app.get('/api/video-card/:id', async (req,res) => {
+  try {
+    let db = req.app.get('db')
+    let {id} = req.params;
+    let vidcard = await db.videocard.singlevideocard(id)
+    res.send(vidcard)
+  } catch (error) {
+    console.log(error)
+  }
+})
 app.get('/api/comp-case', async (req,res) => {
   try {
     let db = req.app.get('db')
@@ -95,11 +145,31 @@ app.get('/api/comp-case', async (req,res) => {
     console.log(error)
   }
 })
+app.get('/api/comp-case/:id', async (req,res)=>{
+  try {
+    let db = req.app.get('db')
+    let {id} = req.params;
+    let compcase = await db.compcase.singlecase(id)
+    res.send(compcase)
+  } catch (error) {
+    console.log(error)
+  }
+})
 app.get('/api/power-supply', async (req,res) => {
   try {
     let db = req.app.get('db')
     let psu = await db.psu.allpsu()
     res.status(200).send(psu)
+  } catch (error) {
+    console.log(error)
+  }
+})
+app.get('/api/power-supply/:id', async (req,res)=> {
+  try {
+    let db = req.app.get('db')
+    let {id} = req.params;
+    let psu = await db.psu.singlepsu(id)
+    res.send(psu)
   } catch (error) {
     console.log(error)
   }

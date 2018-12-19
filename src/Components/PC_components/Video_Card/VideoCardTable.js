@@ -80,6 +80,10 @@ class VideoCardTable extends Component {
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
     this.setState({currentCpus: arrayCopy})
   }
+  addVideoCard(id){
+    this.props.addVideoCard(id)
+    this.props.history.push('/list')
+  }
   render() {
     const {
       videoCard,      
@@ -123,7 +127,7 @@ class VideoCardTable extends Component {
                   <td>{e.coreclock}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=> this.props.addVideoCard(e.video_card_name)}>Add</button> </td>
+                  <td> <button onClick={()=> this.addVideoCard(e.video_card_id)}>Add</button> </td>
                   </tr>
                 )
               })

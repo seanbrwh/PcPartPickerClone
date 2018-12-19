@@ -3,7 +3,8 @@ import axios from 'axios'
 import Pagination from '../Pagination/Pagination'
 import { connect } from 'react-redux'
 import { addMotherboard } from '../../../Ducks/Reducer'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import Rating from '../../Rating/Rating'
 
 class MotherboardTable extends Component {
   constructor(){
@@ -77,7 +78,11 @@ class MotherboardTable extends Component {
     let arrayCopy = [...this.state.currentMbs]
     arrayCopy.sort(this.compareNums(key, type))
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
-    this.setState({currentCpus: arrayCopy})
+    this.setState({currentMbs: arrayCopy})
+  }
+  addMotherboard(id){
+    this.props.addMotherboard(id)
+    this.props.history.push('/list')
   }
   render() {
     const {
@@ -89,24 +94,54 @@ class MotherboardTable extends Component {
     if (totalMbs === 0) return null;
     return (
       <div>
-        <table>
-          <thead>
+        <table className='table'>
+          <thead className='table-head'>
             <tr>
               <th>&nbsp;</th>
-              <th onClick={()=>this.sortBy('mb_name', this.state.asc)}>
-                Motherboard {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+              <th className='table-th' onClick={()=>this.sortBy('mb_name', this.state.asc)}>
+                <p>
+                Motherboard 
+                </p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>                         
               <th onClick={()=>this.sortBy('mb_name', this.state.asc)}>
-                Cpu Socket {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+                <p>
+                Cpu Socket 
+                </p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>                         
               <th onClick={()=>this.sortBy('mb_name', this.state.asc)}>
-                Form Factor {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+                <p>
+                Form Factor 
+                </p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>                         
               <th onClick={()=>this.sortBy('mb_name', this.state.asc)}>
-                Ram Slots {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+                <p>
+                Ram Slots 
+                </p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>                         
               <th onClick={()=>this.sortBy('mb_name', this.state.asc)}>
-                Max Ram {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+                <p>
+                Max Ram 
+                </p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>                         
               <td>Rating</td>
               <td>Price</td>
@@ -119,14 +154,18 @@ class MotherboardTable extends Component {
                 return (
                   <tr key={e.mb_id}>
                   <td><input type="checkbox"/></td>
-                  <td>{e.mb_name}</td>
+                  <td>
+                    <Link to={`/motherboard/${e.mb_id}`}>
+                      {e.mb_name}
+                    </Link>
+                  </td>
                   <td>{e.cpusocket}</td>
                   <td>{e.formfactor}</td>
                   <td>{e.memoryslots}</td>                  
                   <td>{e.maximumsupportedmemory}</td>                  
+                  <td> <Rating/></td>
                   <td> </td>
-                  <td> </td>
-                  <td> <button onClick={()=> this.props.addMotherboard(e.mb_name)}>Add</button> </td>
+                  <td> <button onClick={()=> this.addMotherboard(e.mb_id)}>Add</button> </td>
                   </tr>
                 )
               })

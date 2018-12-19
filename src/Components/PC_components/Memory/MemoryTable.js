@@ -79,6 +79,10 @@ class MemoryTable extends Component {
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
     this.setState({currentMemory: arrayCopy})
   }
+  addMemory(id){
+    this.props.addMemory(id)
+    this.props.history.push('/list')
+  }
   render() {
     const {
       memory,      
@@ -130,7 +134,7 @@ class MemoryTable extends Component {
                   <td>{e.pricepergb}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=>this.props.addMemory(e.mem_name)}>Add</button> </td>
+                  <td> <button onClick={()=>this.addMemory(e.mem_id)}>Add</button> </td>
                   </tr>
                 )
               })

@@ -29,6 +29,8 @@ import Video_Card from './Components/PC_components/Video_Card/Video_Card'
 import Wired_NetWork_Card from './Components/PC_components/Wired_NetWork_Card/Wired_NetWork_Card'
 import Wireless_Network_Card from './Components/PC_components/Wireless_Network_Card/Wireless_Network_Card'
 import CpuPage from './Components/PC_components/Cpu/CpuPage'
+import CpuCoolerPage from './Components/PC_components/CpuCooler/CpuCoolerPage'
+import MotherboardPage from './Components/PC_components/MotherBoard/MotherboardPage'
 
 
 export default(
@@ -41,14 +43,14 @@ export default(
     <Route path='/case-fan' component={Case_Fan}/>
     <Route path='/speakers' component={Computer_Speakers}/>
     <Route exact path='/cpu' component={Cpu}/>
-    <Route path='/cpu-cooler' component={CpuCooler}/>
+    <Route exact path='/cpu-cooler' component={CpuCooler}/>
     <Route path='/external-storage' component={External_Storage}/>
     <Route path='/fan-controller' component={Fan_Controller}/>
     <Route path='/headphones' component={Headphones}/>
     <Route path='/Keyboard' component={Keyboard}/>
     <Route path='/memory' component={Memory}/>
     <Route path='/monitor' component={Monitor}/>
-    <Route path='/motherboard' component={MotherBoard}/>
+    <Route exact path='/motherboard' component={MotherBoard}/>
     <Route path='/mouse' component={Mouse}/>
     <Route path='/os' component={Operating_System}/>
     <Route path='/optical' component={Optical_Drive}/>
@@ -62,5 +64,7 @@ export default(
     <Route path='/wired-network-card' component={Wired_NetWork_Card}/>
     <Route path='/wireless-network-card' component={Wireless_Network_Card}/>
     <Route path='/cpu/:id' component={CpuPage}/>
+    <Route path='/cpu-cooler/:id' component={CpuCoolerPage}/>
+    <Route path='/motherboard/:id' component={MotherboardPage}/>
   </Switch>
 )

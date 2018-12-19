@@ -1,0 +1,1 @@
+select * from internal_storage where int_storage_id = $1

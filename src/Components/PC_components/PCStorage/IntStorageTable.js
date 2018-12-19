@@ -80,6 +80,10 @@ class IntStorageTable extends Component {
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
     this.setState({currentCpus: arrayCopy})
   }
+  addStorage(id){
+    this.props.addStorage(id)
+    this.props.history.push('/list')
+  }
   render() {
     const {
       intStorage,      
@@ -127,7 +131,7 @@ class IntStorageTable extends Component {
                   <td>{e.pricepergb}</td>                  
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=>this.props.addStorage(e.int_storage_name)}>Add</button> </td>
+                  <td> <button onClick={()=>this.addStorage(e.int_storage_id)}>Add</button> </td>
                   </tr>
                 )
               })

@@ -1204,6 +1204,11 @@ table  tr:nth-child(even){
   border-right: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
 }
+.table-head th:nth-child(8){  
+  border-right: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;  
+}
+
 .table-head th p{
   font-size: 10px;
 }
@@ -1359,4 +1364,30 @@ table  tr:nth-child(even){
 #spec-block li{
   color: black;
   font-size: 1.2rem;
+}
+#add-part{  
+  cursor: pointer;
+}
+.table-body tr td:nth-child(2){
+  text-align: left;
+}
+.table-body tr td:nth-child(3){
+  text-align: center
+}
+.table-body tr td:nth-child(4){
+  text-align: center
+}
+.table-body tr td:nth-child(5){
+  text-align: center
+}
+.table-body tr td:nth-child(6){
+  text-align: center
+}
+.table-body tr td:nth-child(7){
+  text-align: center
+}
+.table-body tr td:nth-child(8){
+  position: relative;
+  left: 10px;
+  text-align: center;
 }

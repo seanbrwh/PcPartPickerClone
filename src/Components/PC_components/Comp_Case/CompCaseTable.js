@@ -81,6 +81,10 @@ class CompCaseTable extends Component {
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
     this.setState({currentCases: arrayCopy})
   }  
+  addCase(id){
+    this.props.addCase(id)
+    this.props.history.push('/list')
+  }
   render() {
     console.log(this.state.c_case)
     const {
@@ -130,7 +134,7 @@ class CompCaseTable extends Component {
                   <td>{e.includespowersupply}</td>
                   <td> </td>
                   <td> </td>
-                  <td> <button onClick={()=>this.props.addCase(e.case_name)}>Add</button> </td>
+                  <td> <button onClick={()=>this.addCase(e.case_id)}>Add</button> </td>
                   </tr>
                 )
               })

@@ -80,6 +80,10 @@ class PowerSupplyTable extends Component {
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
     this.setState({currentPsus: arrayCopy})
   }
+  addPsu(id){
+    this.props.addPsu(id)
+    this.props.history.push('/list')
+  }
   render() {
   const {
     psu      
@@ -127,7 +131,7 @@ class PowerSupplyTable extends Component {
                     <td>{e.wattage}</td>                  
                     <td>{e.modular}</td>
                     <td> </td>
-                    <td> <button onClick={()=>this.props.addPsu(e.psu_name)}>Add</button> </td>
+                    <td> <button onClick={()=>this.addPsu(e.psu_id)}>Add</button> </td>
                   </tr>
                 )
               })

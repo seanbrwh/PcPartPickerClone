@@ -11,7 +11,14 @@ class List extends Component {
       expansion:false,
       per: false,
       accesories:false,
-      cpu:[]     
+      cpu:[],
+      cpucooler:[],
+      motherboard:[],
+      memory:[],
+      intStorage:[],
+      video:[],
+      compcase:[],
+      psu:[]
     }
   }
   handleExp(){    
@@ -27,6 +34,28 @@ class List extends Component {
     Axios.get(`/api/cpu/${this.props.list.cpu}`).then(res=>{
       this.setState({cpu:res.data})
     })
+    Axios.get(`/api/cpu-cooler/${this.props.list.cpuCooler}`).then(res=>{
+      this.setState({cpucooler:res.data})
+    })
+    Axios.get(`api/motherboard/${this.props.list.motherboard}`).then(res=>{
+      this.setState({motherboard:res.data})
+    })
+    Axios.get(`/api/memory/${this.props.list.memory}`).then(res=>{
+      this.setState({memory:res.data})
+    })
+    Axios.get(`/api/internal-storage/${this.props.list.storage}`).then(res=>{
+      this.setState({intStorage:res.data})
+    })
+    Axios.get(`/api/video-card/${this.props.list.video_card}`).then(res=>{
+      this.setState({video:res.data})
+    })
+    Axios.get(`/api/comp-case/${this.props.list.compcase}`).then(res=>{
+      this.setState({compcase:res.data})
+    })
+    Axios.get(`/api/power-supply/${this.props.list.psu}`).then(res=>{
+      this.setState({psu:res.data})
+    })
+    
   }
   render() {
     const {expansion,per,accesories} = this.state
@@ -61,12 +90,13 @@ class List extends Component {
                   CPU
                 </Link>
               </td>               
-              <td>
-                <Link to='/cpu'>
+              <td>                
                 {
                   this.props.list.cpu === 0 ? 
                   <button>
-                    Choose a CPU
+                    <Link to='/cpu'>
+                      Choose a CPU
+                    </Link>
                   </button>
                   :
                   <p>
@@ -74,8 +104,7 @@ class List extends Component {
                       {this.state.cpu.map(e=>e.cpuname)}
                     </Link>
                   </p>
-                }
-                </Link>
+                }                
               </td>
               <td></td>
               <td></td>
@@ -85,20 +114,26 @@ class List extends Component {
               <td></td>
             </tr>
             <tr>
-              <td>CPU Cooler</td>
               <td>
                 <Link to='/cpu-cooler'>
+                  CPU Cooler
+                </Link>
+              </td>
+              <td>                
                 {this.props.list.cpuCooler === 0
                 ?
                   <button>
-                    Choose a CPU Cooler
+                    <Link to='/cpu-cooler'>
+                      Choose a CPU Cooler
+                    </Link>
                   </button>
                   :
                   <p>
-                    {this.props.list.cpuCooler}
-                  </p>                  
-                }
-                </Link>
+                    <Link to={`/cpu-cooler/${this.state.cpucooler.map(e=>e.cpu_cooler_id)}`}>
+                      {this.state.cpucooler.map(e=>e.cpu_cooler_name)}
+                    </Link>
+                  </p>              
+                }                
               </td>
               <td></td>
               <td></td>
@@ -108,20 +143,26 @@ class List extends Component {
               <td></td>
             </tr>
             <tr>
-              <td>Motherboard</td>
               <td>
-                <Link to='motherboard'>
+                <Link to='/motherboard'>
+                  Motherboard
+                </Link>
+              </td>
+              <td>                
                 {this.props.list.motherboard === 0 
                 ?
                   <button>
-                    Choose a Motherboard
+                    <Link to='/motherboard'>
+                      Choose a Motherboard
+                    </Link>
                   </button>
                   : 
                   <p>
-                    {this.props.list.motherboard}
+                    <Link to={`/motherboard/${this.state.motherboard.map(e=>e.mb_id)}`}>
+                      {this.state.motherboard.map(e=>e.mb_name)}
+                    </Link>
                   </p>
-                }
-                </Link>
+                }                
               </td>
               <td></td>
               <td></td>
@@ -131,20 +172,28 @@ class List extends Component {
               <td></td>
             </tr>
             <tr>
-              <td>Memory</td>
               <td>
-                <Link to='/memory'>
+                <Link to='memory'>
+                  Memory
+                </Link>
+              </td>
+              <td>
+                
                 {this.props.list.memory === 0 
                 ?
                   <button>
-                    Choose Memory 
+                    <Link to='/memory'>
+                      Choose Memory 
+                    </Link>
                   </button>
                 :
                 <p>
-                  {this.props.list.memory}
+                  <Link to={`/memory/${this.state.memory.map(e=>e.mem_id)}`}>
+                    {this.state.memory.map(e=>e.mem_name)}
+                  </Link>
                 </p>
                 }
-                </Link>
+                
               </td>
               <td></td>
               <td></td>
@@ -154,20 +203,26 @@ class List extends Component {
               <td></td>
             </tr>
             <tr>
-              <td>Storage</td>
               <td>
                 <Link to='/internal-storage'>
+                  Storage
+                </Link>
+              </td>
+              <td>
                 {this.props.list.storage === 0 
                 ?
                   <button>
-                    Choose Storage 
+                    <Link to='/internal-storage'>
+                      Choose Storage 
+                    </Link>
                   </button>
                   :
                   <p>
-                    {this.props.list.storage}
+                    <Link to={`/internal-storage/${this.state.intStorage.map(e=>e.int_storage_id)}`}>
+                      {this.state.intStorage.map(e=>e.int_storage_name)}
+                    </Link>
                   </p>
                 }
-                </Link>
               </td>
               <td></td>
               <td></td>
@@ -177,20 +232,26 @@ class List extends Component {
               <td></td>
             </tr>
             <tr>
-              <td>Video Card</td>
               <td>
                 <Link to='/video-card'>
+                  Video Card
+                </Link>
+              </td>
+              <td>                
                 {this.props.list.video_card === 0
                 ?
                   <button>
-                    Choose a Video Card
+                    <Link to='/video-card'>
+                      Choose a Video Card
+                    </Link>
                   </button>
                   :
                   <p>
-                    {this.props.list.video_card}
+                    <Link to={`/video-card/${this.state.video.map(e=>e.video_card_id)}`}>
+                      {this.state.video.map(e=>e.video_card_name)}
+                    </Link>
                   </p>
-                }
-                </Link>
+                }                
               </td>
               <td></td>
               <td></td>
@@ -200,16 +261,26 @@ class List extends Component {
               <td></td>
             </tr>
             <tr>
-              <td>Case</td>
               <td>
-                <Link to='/comp-case'>
+              <Link to='/comp-case'>
+                Case
+              </Link>
+              </td>
+              <td>                
                 {this.props.list.compcase === 0
                 ?
-                <button>Choose a Case</button>
-                :
-                <p>{this.props.list.compcase}</p>
-                }
-                </Link>
+                <button>
+                  <Link to='/comp-case'>
+                    Choose a Case
+                  </Link>
+                </button>
+                :                
+                <p>
+                  <Link to={`/comp-case/${this.state.compcase.map(e=>e.case_id)}`}>
+                    {this.state.compcase.map(e=>e.case_name)}
+                  </Link>
+                </p>
+                }                
               </td>
               <td></td>
               <td></td>
@@ -219,16 +290,28 @@ class List extends Component {
               <td></td>
             </tr>
             <tr>
-              <td>Power Supply</td>
               <td>
-                <Link to='power-supply'>
+              <Link to='power-supply'>
+                Power Supply
+              </Link>
+              </td>
+              <td>
+                
                 {this.props.list.psu === 0 
                 ?
-                <button>Choose a Power Supply</button>              
+                <button>
+                  <Link to='power-supply'>
+                    Choose a Power Supply
+                  </Link>
+                </button>              
                 :
-                <p>{this.props.list.psu}</p>
+                <p>
+                  <Link to={`/power-supply/${this.state.cpu.map(e=>e.psu_id)}`}>
+                    {this.state.psu.map(e=>e.psu_name)}
+                  </Link>
+                </p>
                 }
-                </Link>
+                
               </td>
               <td></td>
               <td></td>

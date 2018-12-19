@@ -3,7 +3,8 @@ import axios from 'axios'
 import Pagination from '../Pagination/Pagination'
 import { connect } from 'react-redux'
 import { addCpuCooler } from '../../../Ducks/Reducer'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import Rating from '../../Rating/Rating'
 
 class CpuCoolerTable extends Component {
   constructor(){
@@ -68,16 +69,20 @@ class CpuCoolerTable extends Component {
     }
   }
   sortBy(key, type) {
-    let arrayCopy = [...this.state.currentCpuCoolers];
+    let arrayCopy = [...this.state.cpuCooler];
     arrayCopy.sort(this.compareValues(key, type));
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
-    this.setState({currentCpus: arrayCopy});
+    this.setState({currentCpuCoolers: arrayCopy});
   }
   sortByNum(key, type){
-    let arrayCopy = [...this.state.currentCpuCoolers]
+    let arrayCopy = [...this.state.cpuCooler]
     arrayCopy.sort(this.compareNums(key, type))
     this.state.asc === 'asc' ? this.setState({asc:'desc'}) : this.setState({asc:'asc'})
-    this.setState({currentCpus: arrayCopy})
+    this.setState({currentCpuCoolers: arrayCopy})
+  }
+  addCpuCooler(id){
+    this.props.addCpuCooler(id)
+    this.props.history.push('/list')
   }
   render() {
     const {
@@ -89,21 +94,51 @@ class CpuCoolerTable extends Component {
     if (totalCpuCoolers === 0) return null;
     return (
       <div>
-        <table>
-          <thead>
+        <table className='table'>
+          <thead className='table-head'>
             <tr>
               <th>&nbsp;</th>
-              <th onClick={()=>this.sortBy('cpu_cooler_name', this.state.asc)}>
-                Cpu Cooler {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+              <th className='table-th' onClick={()=>this.sortBy('cpu_cooler_name', this.state.asc)}>
+              <p>
+                Cpu Cooler 
+              </p>
+              <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>
               <th onClick={()=>this.sortBy('fanrpm', this.state.asc)}>
-                Fan RPM {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+              <p>
+                Fan RPM 
+              </p>
+              <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>
               <th onClick={()=>this.sortBy('noiselevel', this.state.asc)}>
-                Noise Level {this.state.asc === 'asc'  ? (<i className="fa fa-arrow-down"></i>) : (<i className="fa fa-arrow-up"></i>)}
+              <p>
+                Noise Level 
+              </p>
+              <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
               </th>
-              <th>Rating</th>
-              <th>Price</th>
+              <th>
+                <p>
+                  Rating                
+                </p>
+                <div>
+                  <span className='fa fa-angle-down angle-down'></span>
+                  <span className='fa fa-angle-up angle-up'></span>
+                </div>
+              </th>
+              <th>
+                <p>
+                  Price
+                </p>
+              </th>
               <th>&nbsp;</th>
             </tr>
           </thead>
@@ -113,12 +148,16 @@ class CpuCoolerTable extends Component {
                 return (
                   <tr key={e.cpu_cooler_id}>
                   <td><input type="checkbox"/></td>
-                  <td>{e.cpu_cooler_name}</td>
-                  <td>{e.fanrpm}</td>
-                  <td>{e.noiselevel}</td>                                 
+                  <td>
+                    <Link to={`/cpu-cooler/${e.cpu_cooler_id}`}>
+                      {e.cpu_cooler_name}
+                    </Link>
+                  </td>
+                  <td>{e.fanrpm === 'undefined' ? '' : e.fanrpm}</td>
+                  <td>{e.noiselevel === 'undefined' ? '' : e.noiselevel}</td>                                 
+                  <td><Rating/> </td>
                   <td> </td>
-                  <td> </td>
-                  <td> <button onClick={()=> this.props.addCpuCooler(e.cpu_cooler_name)}>Add</button> </td>
+                  <td> <button onClick={()=> this.addCpuCooler(e.cpu_cooler_id)}>Add</button> </td>
                   </tr>
                 )
               })

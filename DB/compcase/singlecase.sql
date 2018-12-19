@@ -1,0 +1,1 @@
+select * from comp_case where case_id = $1

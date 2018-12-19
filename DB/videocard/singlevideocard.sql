@@ -1,0 +1,1 @@
+select * from video_card where video_card_id = $1
