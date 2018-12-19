@@ -88,7 +88,6 @@ class MotherboardTable extends Component {
     const {
       motherboard,      
     } = this.state;
-    console.log(motherboard)
     const totalMbs = motherboard.length;
 
     if (totalMbs === 0) return null;

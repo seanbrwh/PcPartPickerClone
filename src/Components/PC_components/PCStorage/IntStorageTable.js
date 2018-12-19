@@ -87,8 +87,7 @@ class IntStorageTable extends Component {
   render() {
     const {
       intStorage,      
-    } = this.state;
-    console.log(intStorage)
+    } = this.state;    
     const totalIntStorage = intStorage.length;
 
     if (totalIntStorage === 0) return null;

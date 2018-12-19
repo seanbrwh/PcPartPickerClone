@@ -87,7 +87,6 @@ class MemoryTable extends Component {
     const {
       memory,      
     } = this.state;
-    console.log(memory)
     const totalMemory = memory.length;
 
     if (totalMemory === 0) return null;

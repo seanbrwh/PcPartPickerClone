@@ -123,7 +123,7 @@ export default class Pagination extends Component {
     const pages = this.fetchPageNumbers();
 
     return (
-      <Fragment className='pagination'>        
+      <Fragment >        
         <nav id='pagination'>
           <ul>
             Page

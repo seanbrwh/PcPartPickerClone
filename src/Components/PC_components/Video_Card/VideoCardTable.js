@@ -87,8 +87,7 @@ class VideoCardTable extends Component {
   render() {
     const {
       videoCard,      
-    } = this.state;
-    console.log(videoCard)
+    } = this.state;    
     const totalVideoCards = videoCard.length;
 
     if (totalVideoCards === 0) return null;

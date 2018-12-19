@@ -88,7 +88,6 @@ class CpuCoolerTable extends Component {
     const {
       cpuCooler,      
     } = this.state;
-    console.log(cpuCooler)
     const totalCpuCoolers = cpuCooler.length;
 
     if (totalCpuCoolers === 0) return null;

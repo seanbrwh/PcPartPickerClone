@@ -85,8 +85,7 @@ class CompCaseTable extends Component {
     this.props.addCase(id)
     this.props.history.push('/list')
   }
-  render() {
-    console.log(this.state.c_case)
+  render() {    
     const {
       c_case,      
     } = this.state;

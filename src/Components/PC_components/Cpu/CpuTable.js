@@ -84,12 +84,10 @@ class CpuTable extends Component {
     this.props.addCpu(id)
     this.props.history.push('/list')
   }
-  render() {
-    console.log(this.props.list)
+  render() {    
     const {
       cpu,      
-    } = this.state;
-    console.log(cpu)
+    } = this.state;    
     const totalCpus = cpu.length;
 
     if (totalCpus === 0) return null;

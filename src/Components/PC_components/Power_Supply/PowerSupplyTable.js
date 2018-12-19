@@ -87,8 +87,7 @@ class PowerSupplyTable extends Component {
   render() {
   const {
     psu      
-  } = this.state;
-  console.log(psu)
+  } = this.state;  
   const totalPsus = psu.length;
 
   if (totalPsus === 0) return null;
@@ -123,7 +122,7 @@ class PowerSupplyTable extends Component {
             {
               this.state.currentPsus.map(e=>{
                 return (
-                  <tr key={e.psu__id}>
+                  <tr key={e.psu_id}>
                     <td><input type="checkbox"/></td>
                     <td>{e.psu_name}</td>
                     <td>{e.type}</td>

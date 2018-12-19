@@ -12,10 +12,7 @@ const StyledSlider = withStyles({
   track:{
     background:'rgb(44, 133, 197)',
     height:'5px'
-  },
-  slider: {
-    padding:'200px'
-  },
+  },  
   thumb: {
     borderRadius: '50%',
     background:'white',
@@ -48,8 +45,7 @@ class Cpu extends Component {
     this.setState({manufacturer:e.target.value})
   }
   render() {
-    const {value, min, max} = this.state;
-    const {classes} = this.props;
+    const {value, min, max} = this.state;    
     return (
       <div>
         <div className="current-part-list-full">
