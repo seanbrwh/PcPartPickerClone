@@ -1,51 +1,29 @@
 import React, { Component } from 'react'
-import Slider from '@material-ui/lab/Slider'
-import { withStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types';
 import CpuTable from './CpuTable'
+import 'rheostat/initialize';
 
-const StyledSlider = withStyles({
-  root: {
-    width: '260px',
-    marginTop:'20px',            
-  },
-  track:{
-    background:'rgb(44, 133, 197)',
-    height:'5px'
-  },  
-  thumb: {
-    borderRadius: '50%',
-    background:'white',
-    border:'1px solid lightgrey',
-    height:'20px',
-    width:'20px'
-  },
-  thumbIconWrapper: {
-    backgroundColor: 'white',
-  },
-})(Slider);
 
 
 class Cpu extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {      
-      value:0,
-      min: 1,
-      max: 1930,
+      min: 2,
+      max: 32,
+      valueOne: 2, 
+      ValueTwo: 32,
       rand:0,
-      manufacturer:''
+      cores:undefined
     }
     
   }
-  handleChange = (event, value) => {
-    this.setState({ value })
+  handleChange = (e) => {
+    console.log(e.target)
   }
   handleCheck = (e) => {
-    this.setState({manufacturer:e.target.value})
+    this.setState({cores:e.target.value})
   }
   render() {
-    const {value, min, max} = this.state;    
     return (
       <div>
         <div className="current-part-list-full">
@@ -61,20 +39,7 @@ class Cpu extends Component {
               <h2>Merchants / Pricing</h2>
               <label><input type="checkbox"/>Include Mail In Rebates</label>
               <label><input type="checkbox"/>Use Amazon Smile Links</label>
-              <span>Show Merchants...</span>
-              <div>
-                <h3>Price</h3>
-                  <div className='money-slider'>
-                    ${this.state.value} - $1900
-                  </div>
-                  <StyledSlider                    
-                    min={min}
-                    max={max}
-                    value={value}
-                    aria-labelledby="label"
-                    onChange={this.handleChange}                                       
-                  />
-              </div>
+              <span>Show Merchants...</span>              
               <div className='comp-build-filter'>
                 <h3>Rating</h3>
                 <label htmlFor=""><input type="checkbox"/></label>
@@ -87,17 +52,6 @@ class Cpu extends Component {
               </div>
               <div className='comp-build-filter'>
                 <h3>Manufacturer</h3>
-                <label htmlFor=""><input value='Corsair' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/></label>
-                <label htmlFor=""><input value='Thermaltake' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/></label>
-                <label htmlFor=""><input type="checkbox"/></label>
-                <label htmlFor=""><input type="checkbox"/></label>
-                <label htmlFor=""><input type="checkbox"/></label>
-                <label htmlFor=""><input type="checkbox"/></label>
-                <label htmlFor=""><input type="checkbox"/></label>
-                <span>Show All...</span>
-              </div>
-              <div className='comp-build-filter'>
-                <h3>Color</h3>
                 <label htmlFor=""><input type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
@@ -108,7 +62,7 @@ class Cpu extends Component {
                 <span>Show All...</span>
               </div>
               <div className='comp-build-filter'>
-                <h3>Type</h3>
+                <h3>Series</h3>
                 <label htmlFor=""><input type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
@@ -118,6 +72,20 @@ class Cpu extends Component {
                 <label htmlFor=""><input type="checkbox"/></label>
                 <span>Show All...</span>
               </div>
+              <div className='comp-build-filter'>
+                <h3>Cores</h3>
+                <label htmlFor=""><input value='2' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/> 2</label>
+                <label htmlFor=""><input value='4' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/> 4</label>
+                <label htmlFor=""><input value='6' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/> 6</label>
+                <label htmlFor=""><input value='8' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/> 8</label>
+                <label htmlFor=""><input value='10' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/> 10</label>
+                <label htmlFor=""><input value='12' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/> 12</label>                
+                <label htmlFor=""><input value='16' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/> 16</label>                
+                <label htmlFor=""><input value='18' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/> 18</label>                
+                <label htmlFor=""><input value='32' name='Manufacturer' onChange={this.handleCheck} type="checkbox"/> 32</label>                
+                <span>Show All...</span>
+              </div>              
+              
               <div className='comp-build-filter'>
                 <h3>Power Supply</h3>
                 <label htmlFor=""><input type="checkbox"/></label>
@@ -145,79 +113,12 @@ class Cpu extends Component {
                 <label htmlFor=""><input type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
                 <label htmlFor=""><input type="checkbox"/></label>
-              </div>
-              <div>
-                <div className='money-slider'>
-                  ${this.state.value} - $1900
-                </div>
-                <StyledSlider                   
-                  min={min}
-                  max={max}
-                  value={value}
-                  aria-labelledby="label"
-                  onChange={this.handleChange}                                  
-                />
-              </div><div>
-                <div className='money-slider'>
-                  ${this.state.value} - $1900
-                </div>
-                <StyledSlider                   
-                  min={min}
-                  max={max}
-                  value={value}
-                  aria-labelledby="label"
-                  onChange={this.handleChange}                                  
-                />
-              </div><div>
-                <div className='money-slider'>
-                  ${this.state.value} - $1900
-                </div>
-                <StyledSlider                   
-                  min={min}
-                  max={max}
-                  value={value}
-                  aria-labelledby="label"
-                  onChange={this.handleChange}                                  
-                />
-              </div><div>
-                <div className='money-slider'>
-                  ${this.state.value} - $1900
-                </div>
-                <StyledSlider                   
-                  min={min}
-                  max={max}
-                  value={value}
-                  aria-labelledby="label"
-                  onChange={this.handleChange}                                  
-                />
-              </div><div>
-                <div className='money-slider'>
-                  ${this.state.value} - $1900
-                </div>
-                <StyledSlider                   
-                  min={min}
-                  max={max}
-                  value={value}
-                  aria-labelledby="label"
-                  onChange={this.handleChange}                                  
-                />
-              </div><div>
-                <div className='money-slider'>
-                  ${this.state.value} - $1900
-                </div>
-                <StyledSlider                   
-                  min={min}
-                  max={max}
-                  value={value}
-                  aria-labelledby="label"
-                  onChange={this.handleChange}                                  
-                />
-              </div>
+              </div>              
             </div>
           </div>
           <div className="case-col-right">
             <CpuTable
-              manufacturer={this.state.manufacturer}
+              cores={this.state.cores}
             />
           </div>
         </div>    
@@ -225,7 +126,4 @@ class Cpu extends Component {
     )
   }
 }
-Slider.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 export default (Cpu)

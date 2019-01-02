@@ -24,7 +24,9 @@ export default function Footer() {
               <Link to='/build'>
                 <li>Completed Builds</li>
               </Link>
-              <li>Individual Parts</li>
+              <Link to='/indvidual-parts'> 
+                <li>Individual Parts</li>
+              </Link>
             </ul>
           </div>
           <div className="sections">

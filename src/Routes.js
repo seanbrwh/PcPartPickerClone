@@ -31,7 +31,7 @@ import Wireless_Network_Card from './Components/PC_components/Wireless_Network_C
 import CpuPage from './Components/PC_components/Cpu/CpuPage'
 import CpuCoolerPage from './Components/PC_components/CpuCooler/CpuCoolerPage'
 import MotherboardPage from './Components/PC_components/MotherBoard/MotherboardPage'
-
+import IndvidualParts from './Components/IndividualParts/IndividualParts'
 
 export default(
   <Switch>
@@ -39,6 +39,7 @@ export default(
     <Route path='/list' component={List}/>
     <Route path='/guide' component={Guide}/>
     <Route path='/build' component={Build}/>
+    <Route path='/indvidual-parts' component={IndvidualParts}/>
     <Route path='/comp-case' component={Comp_case}/>
     <Route path='/case-fan' component={Case_Fan}/>
     <Route path='/speakers' component={Computer_Speakers}/>

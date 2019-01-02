@@ -7,11 +7,12 @@ import { addCpu } from '../../../Ducks/Reducer'
 import { withRouter,Link } from 'react-router-dom'
 
 class CpuTable extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       cpu:[],
       currentCpus:[],
+      filteredCpus:[],
       currentPage:null,
       totalPages:null,
       asc: 'desc',
@@ -84,7 +85,14 @@ class CpuTable extends Component {
     this.props.addCpu(id)
     this.props.history.push('/list')
   }
-  render() {    
+  componentDidUpdate(prevProps){
+    console.log(prevProps, this.props.cores)
+    if(prevProps.cores !== this.props.cores){
+      this.setState({filteredCpus:this.state.cpu.filter(e=>e.cores === this.props.cores)})
+    }
+  }
+  render() {   
+    console.log(this.state.filteredCpus)
     const {
       cpu,      
     } = this.state;    
@@ -141,7 +149,28 @@ class CpuTable extends Component {
             </tr>
           </thead>
           <tbody className='table-body'>
-            {
+            {         
+              this.props.cores !== undefined 
+              ?
+              this.state.filteredCpus.map(e=>{
+                return (
+                  <tr key={e.cpu_id}>
+                    <td><input type="checkbox"/></td>
+                    <td>
+                      <Link to={`cpu/${e.cpu_id}`}>
+                        {e.cpuname}
+                      </Link>
+                    </td>
+                    <td>{e.operatingfrequency}</td>
+                    <td>{e.cores}</td>
+                    <td>{e.thermaldesignpower}</td>                  
+                    <td> <Rating/> </td>
+                    <td> </td>
+                    <td> <button onClick={()=>this.addCpu(e.cpu_id)}>Add</button> </td>                  
+                  </tr>
+                )
+              })
+              :
               this.state.currentCpus.map(e=>{
                 return (
                   <tr key={e.cpu_id}>
